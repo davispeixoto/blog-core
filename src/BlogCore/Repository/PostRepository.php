@@ -10,6 +10,11 @@ namespace DavisPeixoto\BlogCore\Repository;
 
 use DavisPeixoto\BlogCore\Interfaces\RepositoryInterface;
 
+/**
+ * Class PostRepository
+ * @package DavisPeixoto\BlogCore\Repository
+ * @codeCoverageIgnore
+ */
 abstract class PostRepository implements RepositoryInterface
 {
     public function getBySlang() {}

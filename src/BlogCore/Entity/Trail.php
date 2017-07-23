@@ -12,6 +12,10 @@ namespace DavisPeixoto\Entity;
 use Ramsey\Uuid\Uuid;
 use stdClass;
 
+/**
+ * Class Trail
+ * @package DavisPeixoto\Entity
+ */
 class Trail extends stdClass
 {
     /**
@@ -50,6 +54,7 @@ class Trail extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return Uuid
      */
     public function getTrailId(): Uuid
@@ -58,6 +63,7 @@ class Trail extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param Uuid $trailId
      */
     public function setTrailId(Uuid $trailId)
@@ -66,6 +72,7 @@ class Trail extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return string
      */
     public function getName(): string
@@ -74,6 +81,7 @@ class Trail extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param string $name
      */
     public function setName(string $name)
@@ -82,6 +90,7 @@ class Trail extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return string
      */
     public function getDescription(): string
@@ -90,6 +99,7 @@ class Trail extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param string $description
      */
     public function setDescription(string $description)
@@ -98,6 +108,7 @@ class Trail extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return Post[]
      */
     public function getPosts(): array
@@ -106,6 +117,7 @@ class Trail extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param Post[] $posts
      */
     public function setPosts($posts)

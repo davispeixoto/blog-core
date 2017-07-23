@@ -12,6 +12,10 @@ namespace DavisPeixoto\Entity;
 use Ramsey\Uuid\Uuid;
 use stdClass;
 
+/**
+ * Class Tag
+ * @package DavisPeixoto\Entity
+ */
 class Tag extends stdClass
 {
     /**
@@ -35,6 +39,7 @@ class Tag extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return Uuid
      */
     public function getTagId(): Uuid
@@ -43,6 +48,7 @@ class Tag extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param Uuid $tagId
      */
     public function setTagId(Uuid $tagId)
@@ -51,6 +57,7 @@ class Tag extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return string
      */
     public function getTagName(): string
@@ -59,6 +66,7 @@ class Tag extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param string $tagName
      */
     public function setTagName(string $tagName)

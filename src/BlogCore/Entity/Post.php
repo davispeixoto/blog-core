@@ -13,6 +13,10 @@ use DateTime;
 use Ramsey\Uuid\Uuid;
 use stdClass;
 
+/**
+ * Class Post
+ * @package DavisPeixoto\Entity
+ */
 class Post extends stdClass
 {
     /**
@@ -65,6 +69,7 @@ class Post extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return Uuid
      */
     public function getPostId(): Uuid
@@ -73,6 +78,7 @@ class Post extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param Uuid $postId
      */
     public function setPostId(Uuid $postId)
@@ -81,6 +87,7 @@ class Post extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return string
      */
     public function getTitle(): string
@@ -89,6 +96,7 @@ class Post extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param string $title
      */
     public function setTitle(string $title)
@@ -97,6 +105,7 @@ class Post extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return string
      */
     public function getBody(): string
@@ -105,6 +114,7 @@ class Post extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param string $body
      */
     public function setBody(string $body)
@@ -113,6 +123,7 @@ class Post extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return DateTime
      */
     public function getPublishDate(): DateTime
@@ -121,6 +132,7 @@ class Post extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param DateTime $publishDate
      */
     public function setPublishDate(DateTime $publishDate)
@@ -129,6 +141,7 @@ class Post extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return Author
      */
     public function getAuthorId(): Author
@@ -137,6 +150,7 @@ class Post extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param Author $authorId
      */
     public function setAuthorId(Author $authorId)
@@ -145,6 +159,7 @@ class Post extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return Tag[]
      */
     public function getTags(): array
@@ -153,6 +168,7 @@ class Post extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param Tag[] $tags
      */
     public function setTags(array $tags)

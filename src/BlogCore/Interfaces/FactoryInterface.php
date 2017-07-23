@@ -8,7 +8,11 @@
 
 namespace DavisPeixoto\BlogCore\Interfaces;
 
-
+/**
+ * Interface FactoryInterface
+ * @package DavisPeixoto\BlogCore\Interfaces
+ * @codeCoverageIgnore
+ */
 interface FactoryInterface
 {
 

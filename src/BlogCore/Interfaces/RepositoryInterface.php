@@ -12,6 +12,11 @@ use Exception;
 use Ramsey\Uuid\Uuid;
 use stdClass;
 
+/**
+ * Interface RepositoryInterface
+ * @package DavisPeixoto\BlogCore\Interfaces
+ * @codeCoverageIgnore
+ */
 interface RepositoryInterface
 {
     /**

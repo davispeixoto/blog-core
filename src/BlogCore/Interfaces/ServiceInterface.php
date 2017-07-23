@@ -8,7 +8,11 @@
 
 namespace DavisPeixoto\BlogCore\Interfaces;
 
-
+/**
+ * Interface ServiceInterface
+ * @package DavisPeixoto\BlogCore\Interfaces
+ * @codeCoverageIgnore
+ */
 interface ServiceInterface
 {
     /**

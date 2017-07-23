@@ -10,6 +10,11 @@ namespace DavisPeixoto\BlogCore\Repository;
 
 use DavisPeixoto\BlogCore\Interfaces\RepositoryInterface;
 
+/**
+ * Class TrailRepository
+ * @package DavisPeixoto\BlogCore\Repository
+ * @codeCoverageIgnore
+ */
 abstract class TrailRepository implements RepositoryInterface
 {
 

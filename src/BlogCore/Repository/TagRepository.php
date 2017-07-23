@@ -10,6 +10,11 @@ namespace DavisPeixoto\BlogCore\Repository;
 
 use DavisPeixoto\BlogCore\Interfaces\RepositoryInterface;
 
+/**
+ * Class TagRepository
+ * @package DavisPeixoto\BlogCore\Repository
+ * @codeCoverageIgnore
+ */
 abstract class TagRepository implements RepositoryInterface
 {
 

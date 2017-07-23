@@ -13,6 +13,10 @@ use DateTime;
 use Ramsey\Uuid\Uuid;
 use stdClass;
 
+/**
+ * Class Author
+ * @package DavisPeixoto\Entity
+ */
 class Author extends stdClass
 {
     /**
@@ -58,6 +62,7 @@ class Author extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return Uuid
      */
     public function getAuthorId(): Uuid
@@ -66,6 +71,7 @@ class Author extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param Uuid $authorId
      */
     public function setAuthorId(Uuid $authorId)
@@ -74,6 +80,7 @@ class Author extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return string
      */
     public function getName(): string
@@ -82,6 +89,7 @@ class Author extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param string $name
      */
     public function setName(string $name)
@@ -90,6 +98,7 @@ class Author extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return string
      */
     public function getEmail(): string
@@ -98,6 +107,7 @@ class Author extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param string $email
      */
     public function setEmail(string $email)
@@ -106,6 +116,7 @@ class Author extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return string
      */
     public function getBio(): string
@@ -114,6 +125,7 @@ class Author extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param string $bio
      */
     public function setBio(string $bio)
@@ -122,6 +134,7 @@ class Author extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @return DateTime
      */
     public function getBirthdate(): DateTime
@@ -130,6 +143,7 @@ class Author extends stdClass
     }
 
     /**
+     * @codeCoverageIgnore
      * @param DateTime $birthdate
      */
     public function setBirthdate(DateTime $birthdate)

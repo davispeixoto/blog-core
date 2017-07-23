@@ -16,6 +16,10 @@ use Exception;
 use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * Class CreateAuthor
+ * @package DavisPeixoto\BlogCore\Service
+ */
 class CreateAuthor implements ServiceInterface
 {
     /**
