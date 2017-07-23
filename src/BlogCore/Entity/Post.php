@@ -11,8 +11,9 @@ namespace DavisPeixoto\Entity;
 
 use DateTime;
 use Ramsey\Uuid\Uuid;
+use stdClass;
 
-class Post
+class Post extends stdClass
 {
     /**
      * @var Uuid
@@ -156,6 +157,28 @@ class Post
      */
     public function setTags(array $tags)
     {
-        $this->tags = $tags;
+        $this->tags = array_unique($tags);
+    }
+
+    public function addTag(Tag $tag)
+    {
+        $tags = $this->tags;
+        $tags[] = $tag;
+        $this->setTags($tags);
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag)
+    {
+        foreach ($this->getTags() as $key => $value) {
+            if ($value->getTagId() === $tag->getTagId()) {
+                unset($this->tags[$key]);
+
+                return $this;
+            }
+        }
+
+        return $this;
     }
 }

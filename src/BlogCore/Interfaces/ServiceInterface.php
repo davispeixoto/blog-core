@@ -11,5 +11,8 @@ namespace DavisPeixoto\BlogCore\Interfaces;
 
 interface ServiceInterface
 {
-
+    /**
+     * @return mixed
+     */
+    public function run();
 }

@@ -10,8 +10,9 @@ namespace DavisPeixoto\Entity;
 
 
 use Ramsey\Uuid\Uuid;
+use stdClass;
 
-class Tag
+class Tag extends stdClass
 {
     /**
      * @var Uuid

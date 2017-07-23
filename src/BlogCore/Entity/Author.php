@@ -11,8 +11,9 @@ namespace DavisPeixoto\Entity;
 
 use DateTime;
 use Ramsey\Uuid\Uuid;
+use stdClass;
 
-class Author
+class Author extends stdClass
 {
     /**
      * @var Uuid

@@ -10,8 +10,9 @@ namespace DavisPeixoto\Entity;
 
 
 use Ramsey\Uuid\Uuid;
+use stdClass;
 
-class Trail
+class Trail extends stdClass
 {
     /**
      * @var Uuid
@@ -40,7 +41,7 @@ class Trail
      * @param string $description
      * @param Post[] $posts
      */
-    public function __construct(Uuid $trailId, $name, $description, $posts = [])
+    public function __construct(Uuid $trailId, $name, $description, array $posts = [])
     {
         $this->trailId = $trailId;
         $this->name = $name;
@@ -97,9 +98,9 @@ class Trail
     }
 
     /**
-     * @return array|Post[]
+     * @return Post[]
      */
-    public function getPosts()
+    public function getPosts(): array
     {
         return $this->posts;
     }
@@ -109,7 +110,7 @@ class Trail
      */
     public function setPosts($posts)
     {
-        $this->posts = $posts;
+        $this->posts = array_unique($posts);
     }
 
     /**
@@ -118,19 +119,21 @@ class Trail
      */
     public function addPost(Post $post)
     {
-        $this->posts[] = $post;
+        $posts = $this->getPosts();
+        $posts[] = $post;
+        $this->setPosts($posts);
 
         return $this;
     }
 
     /**
-     * @param Uuid $postId
+     * @param Post $post
      * @return $this
      */
-    public function removePost(Uuid $postId)
+    public function removePost(Post $post)
     {
-        foreach ($this->posts as $key => $post) {
-            if ($post->postId === $postId) {
+        foreach ($this->getPosts() as $key => $value) {
+            if ($value->getPostId() === $post->getPostId()) {
                 unset($this->posts[$key]);
 
                 return $this;
