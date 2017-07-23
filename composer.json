@@ -29,6 +29,5 @@
       "Davispeixoto\\BlogCore\\": "src/BlogCore",
       "Davispeixoto\\BlogCore\\Tests\\": "tests"
     }
-  },
-  "minimum-stability": "dev"
+  }
 }
