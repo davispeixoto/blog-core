@@ -14,7 +14,7 @@ use stdClass;
 
 /**
  * Class Tag
- * @package DavisPeixoto\Entity
+ * @package DavisPeixoto\BlogCore\Entity
  */
 class Tag extends stdClass
 {

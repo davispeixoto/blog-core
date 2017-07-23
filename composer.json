@@ -26,8 +26,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Davispeixoto\\BlogCore\\": "src/BlogCore",
-      "Davispeixoto\\BlogCore\\Tests\\": "tests"
+      "DavisPeixoto\\BlogCore\\": "src/BlogCore",
+      "DavisPeixoto\\BlogCore\\Tests\\": "tests"
     }
   }
 }

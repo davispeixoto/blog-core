@@ -15,7 +15,7 @@ use stdClass;
 
 /**
  * Class Author
- * @package DavisPeixoto\Entity
+ * @package DavisPeixoto\BlogCore\Entity
  */
 class Author extends stdClass
 {

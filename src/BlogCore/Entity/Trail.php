@@ -14,7 +14,7 @@ use stdClass;
 
 /**
  * Class Trail
- * @package DavisPeixoto\Entity
+ * @package DavisPeixoto\BlogCore\Entity
  */
 class Trail extends stdClass
 {

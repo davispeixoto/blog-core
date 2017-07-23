@@ -15,7 +15,7 @@ use stdClass;
 
 /**
  * Class Post
- * @package DavisPeixoto\Entity
+ * @package DavisPeixoto\BlogCore\Entity
  */
 class Post extends stdClass
 {
@@ -58,8 +58,14 @@ class Post extends stdClass
      * @param Author $authorId
      * @param Tag[]|null $tags
      */
-    public function __construct(UuidInterface $postId, $title, $body, DateTime $publishDate, Author $authorId, array $tags = [])
-    {
+    public function __construct(
+        UuidInterface $postId,
+        $title,
+        $body,
+        DateTime $publishDate,
+        Author $authorId,
+        array $tags = []
+    ) {
         $this->postId = $postId;
         $this->title = $title;
         $this->body = $body;
