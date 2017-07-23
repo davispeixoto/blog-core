@@ -9,28 +9,28 @@
 namespace DavisPeixoto\BlogCore\Service;
 
 
+use DavisPeixoto\BlogCore\Entity\Tag;
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\AuthorRepository;
-use DavisPeixoto\BlogCore\Entity\Author;
+use DavisPeixoto\BlogCore\Repository\TagRepository;
 use Exception;
 use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class EditAuthor
+ * Class EditTag
  * @package DavisPeixoto\BlogCore\Service
  */
-class EditAuthor implements ServiceInterface
+class EditTag implements ServiceInterface
 {
     /**
-     * @var AuthorRepository
+     * @var TagRepository
      */
-    private $authorRepository;
+    private $tagRepository;
 
     /**
-     * @var Author
+     * @var Tag
      */
-    private $author;
+    private $tag;
 
     /**
      * @var LoggerInterface
@@ -38,15 +38,15 @@ class EditAuthor implements ServiceInterface
     private $logger;
 
     /**
-     * EditAuthor constructor.
-     * @param AuthorRepository $authorRepository
-     * @param Author $author
+     * EditTag constructor.
+     * @param TagRepository $tagRepository
+     * @param Tag $tag
      * @param LoggerInterface $logger
      */
-    public function __construct(AuthorRepository $authorRepository, Author $author, LoggerInterface $logger)
+    public function __construct(TagRepository $tagRepository, Tag $tag, LoggerInterface $logger)
     {
-        $this->authorRepository = $authorRepository;
-        $this->author = $author;
+        $this->tagRepository = $tagRepository;
+        $this->tag = $tag;
         $this->logger = $logger;
     }
 
@@ -56,7 +56,7 @@ class EditAuthor implements ServiceInterface
     public function run()
     {
         try {
-            return $this->authorRepository->save($this->author);
+            return $this->tagRepository->save($this->tag);
         } catch (Exception $e) {
             $this->logger->error($e->getMessage());
         }
