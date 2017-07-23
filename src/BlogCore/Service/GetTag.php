@@ -28,7 +28,7 @@ class GetTag implements ServiceInterface
     private $tagRepository;
 
     /**
-     * @var array
+     * @var UuidInterface
      */
     private $uuid;
 
