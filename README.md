@@ -1,6 +1,6 @@
 # Blog Core
 
-This package provides a sample of core functionality of a blog designed by myself for a personal project
+This package provides a sample of core functionality of a blog designed by myself study DDD
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/davispeixoto/laravel5-salesforce.svg)](https://packagist.org/packages/davispeixoto/laravel5-salesforce)
 [![Total Downloads](https://img.shields.io/packagist/dt/davispeixoto/laravel5-salesforce.svg)](https://packagist.org/packages/davispeixoto/laravel5-salesforce)
@@ -18,7 +18,7 @@ This package can be installed via [Composer](http://getcomposer.org) by requirin
 ```json
 {
     "require": {
-        "davispeixoto/blog-core": "~1.0"
+        "davispeixoto/blog-core": "dev-master"
     }
 }
 ```
@@ -34,7 +34,7 @@ Not sure how to write this section
 
 ## Usage
 
-That's it! You're all set to go. Just use:
+Just import and use, respecting entities and interfaces
 
 ## License
 
