@@ -2,14 +2,10 @@
 
 This package provides a sample of core functionality of a blog designed by myself study DDD
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/davispeixoto/laravel5-salesforce.svg)](https://packagist.org/packages/davispeixoto/laravel5-salesforce)
-[![Total Downloads](https://img.shields.io/packagist/dt/davispeixoto/laravel5-salesforce.svg)](https://packagist.org/packages/davispeixoto/laravel5-salesforce)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/davispeixoto/Laravel-5-Salesforce/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/davispeixoto/Laravel-5-Salesforce/?branch=master)
-[![Codacy Badge](https://www.codacy.com/project/badge/bf551ce90c34492ca54c4748234a72ca)](https://www.codacy.com/app/davis-peixoto/Laravel-5-Salesforce)
-[![Code Climate](https://codeclimate.com/github/davispeixoto/Laravel-5-Salesforce/badges/gpa.svg)](https://codeclimate.com/github/davispeixoto/Laravel-5-Salesforce)
-[![Build Status](https://travis-ci.org/davispeixoto/Laravel-5-Salesforce.svg)](https://travis-ci.org/davispeixoto/Laravel-5-Salesforce)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/004992d1-90a7-4bd6-9dae-2d8b541386ae/small.png)](https://insight.sensiolabs.com/projects/004992d1-90a7-4bd6-9dae-2d8b541386ae)
-
+[![Latest Stable Version](https://img.shields.io/packagist/v/davispeixoto/blog-core.svg)](https://packagist.org/packages/davispeixoto/blog-core)
+[![Total Downloads](https://img.shields.io/packagist/dt/davispeixoto/blog-core.svg)](https://packagist.org/packages/davispeixoto/blog-core)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/davispeixoto/blog-core/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/davispeixoto/blog-core/?branch=master)
+[![Build Status](https://travis-ci.org/davispeixoto/blog-core.svg?branch=master)](https://travis-ci.org/davispeixoto/blog-core)
 ## Installation
 
 This package can be installed via [Composer](http://getcomposer.org) by requiring the
