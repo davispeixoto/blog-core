@@ -10,7 +10,7 @@ namespace DavisPeixoto\BlogCore\Service;
 
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\PostRepository;
+use DavisPeixoto\BlogCore\Repository\AbstractPostRepository;
 use DavisPeixoto\BlogCore\Entity\Post;
 use Exception;
 use Psr\Log\LoggerInterface;
@@ -23,7 +23,7 @@ use Ramsey\Uuid\UuidInterface;
 class CreatePost implements ServiceInterface
 {
     /**
-     * @var PostRepository
+     * @var AbstractPostRepository
      */
     private $postRepository;
 
@@ -39,11 +39,11 @@ class CreatePost implements ServiceInterface
 
     /**
      * CreatePost constructor.
-     * @param PostRepository $postRepository
+     * @param AbstractPostRepository $postRepository
      * @param Post $post
      * @param LoggerInterface $logger
      */
-    public function __construct(PostRepository $postRepository, Post $post, LoggerInterface $logger)
+    public function __construct(AbstractPostRepository $postRepository, Post $post, LoggerInterface $logger)
     {
         $this->postRepository = $postRepository;
         $this->post = $post;

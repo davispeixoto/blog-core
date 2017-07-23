@@ -11,7 +11,7 @@ namespace DavisPeixoto\BlogCore\Service;
 
 use DavisPeixoto\BlogCore\Entity\Tag;
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\TagRepository;
+use DavisPeixoto\BlogCore\Repository\AbstractTagRepository;
 use Exception;
 use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\UuidInterface;
@@ -23,7 +23,7 @@ use Ramsey\Uuid\UuidInterface;
 class EditTag implements ServiceInterface
 {
     /**
-     * @var TagRepository
+     * @var AbstractTagRepository
      */
     private $tagRepository;
 
@@ -39,11 +39,11 @@ class EditTag implements ServiceInterface
 
     /**
      * EditTag constructor.
-     * @param TagRepository $tagRepository
+     * @param AbstractTagRepository $tagRepository
      * @param Tag $tag
      * @param LoggerInterface $logger
      */
-    public function __construct(TagRepository $tagRepository, Tag $tag, LoggerInterface $logger)
+    public function __construct(AbstractTagRepository $tagRepository, Tag $tag, LoggerInterface $logger)
     {
         $this->tagRepository = $tagRepository;
         $this->tag = $tag;

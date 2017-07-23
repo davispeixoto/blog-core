@@ -10,7 +10,7 @@ namespace DavisPeixoto\BlogCore\Service;
 
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\AuthorRepository;
+use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
 use Psr\Log\LoggerInterface;
 use Exception;
 use stdClass;
@@ -22,7 +22,7 @@ use stdClass;
 class ListAuthors implements ServiceInterface
 {
     /**
-     * @var AuthorRepository
+     * @var AbstractAuthorRepository
      */
     private $authorRepository;
 
@@ -38,11 +38,11 @@ class ListAuthors implements ServiceInterface
 
     /**
      * ListAuthors constructor.
-     * @param AuthorRepository $authorRepository
+     * @param AbstractAuthorRepository $authorRepository
      * @param array $filters
      * @param LoggerInterface $logger
      */
-    public function __construct(AuthorRepository $authorRepository, Array $filters, LoggerInterface $logger)
+    public function __construct(AbstractAuthorRepository $authorRepository, Array $filters, LoggerInterface $logger)
     {
         $this->authorRepository = $authorRepository;
         $this->filters = $filters;

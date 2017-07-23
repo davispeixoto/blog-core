@@ -33,7 +33,7 @@ interface RepositoryInterface
     /**
      * Must receive the entity to be deleted
      * Should return true in case of success
-     * Should return false in case of failure
+     * Or return false in case of failure
      *
      * @param stdClass $obj
      * @throws Exception

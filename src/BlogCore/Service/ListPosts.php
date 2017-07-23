@@ -10,7 +10,7 @@ namespace DavisPeixoto\BlogCore\Service;
 
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\PostRepository;
+use DavisPeixoto\BlogCore\Repository\AbstractPostRepository;
 use Psr\Log\LoggerInterface;
 use Exception;
 use stdClass;
@@ -22,7 +22,7 @@ use stdClass;
 class ListPosts implements ServiceInterface
 {
     /**
-     * @var PostRepository
+     * @var AbstractPostRepository
      */
     private $postRepository;
 
@@ -38,11 +38,11 @@ class ListPosts implements ServiceInterface
 
     /**
      * ListPosts constructor.
-     * @param PostRepository $postRepository
+     * @param AbstractPostRepository $postRepository
      * @param array $filters
      * @param LoggerInterface $logger
      */
-    public function __construct(PostRepository $postRepository, Array $filters, LoggerInterface $logger)
+    public function __construct(AbstractPostRepository $postRepository, Array $filters, LoggerInterface $logger)
     {
         $this->postRepository = $postRepository;
         $this->filters = $filters;

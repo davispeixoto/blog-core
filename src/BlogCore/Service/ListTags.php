@@ -10,7 +10,7 @@ namespace DavisPeixoto\BlogCore\Service;
 
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\TagRepository;
+use DavisPeixoto\BlogCore\Repository\AbstractTagRepository;
 use Psr\Log\LoggerInterface;
 use Exception;
 use stdClass;
@@ -22,7 +22,7 @@ use stdClass;
 class ListTags implements ServiceInterface
 {
     /**
-     * @var TagRepository
+     * @var AbstractTagRepository
      */
     private $tagRepository;
 
@@ -38,11 +38,11 @@ class ListTags implements ServiceInterface
 
     /**
      * ListTags constructor.
-     * @param TagRepository $tagRepository
+     * @param AbstractTagRepository $tagRepository
      * @param array $filters
      * @param LoggerInterface $logger
      */
-    public function __construct(TagRepository $tagRepository, Array $filters, LoggerInterface $logger)
+    public function __construct(AbstractTagRepository $tagRepository, Array $filters, LoggerInterface $logger)
     {
         $this->tagRepository = $tagRepository;
         $this->filters = $filters;

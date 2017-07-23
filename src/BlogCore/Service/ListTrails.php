@@ -10,7 +10,7 @@ namespace DavisPeixoto\BlogCore\Service;
 
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\TrailRepository;
+use DavisPeixoto\BlogCore\Repository\AbstractTrailRepository;
 use Psr\Log\LoggerInterface;
 use Exception;
 use stdClass;
@@ -22,7 +22,7 @@ use stdClass;
 class ListTrails implements ServiceInterface
 {
     /**
-     * @var TrailRepository
+     * @var AbstractTrailRepository
      */
     private $trailRepository;
 
@@ -38,11 +38,11 @@ class ListTrails implements ServiceInterface
 
     /**
      * ListTrails constructor.
-     * @param TrailRepository $trailRepository
+     * @param AbstractTrailRepository $trailRepository
      * @param array $filters
      * @param LoggerInterface $logger
      */
-    public function __construct(TrailRepository $trailRepository, Array $filters, LoggerInterface $logger)
+    public function __construct(AbstractTrailRepository $trailRepository, Array $filters, LoggerInterface $logger)
     {
         $this->trailRepository = $trailRepository;
         $this->filters = $filters;

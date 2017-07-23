@@ -10,7 +10,7 @@ namespace DavisPeixoto\BlogCore\Service;
 
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\TrailRepository;
+use DavisPeixoto\BlogCore\Repository\AbstractTrailRepository;
 use DavisPeixoto\BlogCore\Entity\Trail;
 use Exception;
 use Psr\Log\LoggerInterface;
@@ -23,7 +23,7 @@ use Psr\Log\LoggerInterface;
 class DeleteTrail implements ServiceInterface
 {
     /**
-     * @var TrailRepository
+     * @var AbstractTrailRepository
      */
     private $trailRepository;
 
@@ -39,11 +39,11 @@ class DeleteTrail implements ServiceInterface
 
     /**
      * DeleteTrail constructor.
-     * @param TrailRepository $trailRepository
+     * @param AbstractTrailRepository $trailRepository
      * @param Trail $trail
      * @param LoggerInterface $logger
      */
-    public function __construct(TrailRepository $trailRepository, Trail $trail, LoggerInterface $logger)
+    public function __construct(AbstractTrailRepository $trailRepository, Trail $trail, LoggerInterface $logger)
     {
         $this->trailRepository = $trailRepository;
         $this->trail = $trail;

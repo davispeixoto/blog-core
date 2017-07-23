@@ -11,11 +11,11 @@ namespace DavisPeixoto\BlogCore\Repository;
 use DavisPeixoto\BlogCore\Interfaces\RepositoryInterface;
 
 /**
- * Class AuthorRepository
+ * Class AbstractTrailRepository
  * @package DavisPeixoto\BlogCore\Repository
  * @codeCoverageIgnore
  */
-abstract class AuthorRepository implements RepositoryInterface
+abstract class AbstractTrailRepository implements RepositoryInterface
 {
 
 }

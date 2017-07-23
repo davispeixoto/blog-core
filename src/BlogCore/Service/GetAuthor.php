@@ -10,7 +10,7 @@ namespace DavisPeixoto\BlogCore\Service;
 
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\AuthorRepository;
+use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
 use Psr\Log\LoggerInterface;
 use Exception;
 use Ramsey\Uuid\UuidInterface;
@@ -23,7 +23,7 @@ use stdClass;
 class GetAuthor implements ServiceInterface
 {
     /**
-     * @var AuthorRepository
+     * @var AbstractAuthorRepository
      */
     private $authorRepository;
 
@@ -39,12 +39,15 @@ class GetAuthor implements ServiceInterface
 
     /**
      * GetAuthor constructor.
-     * @param AuthorRepository $authorRepository
+     * @param AbstractAuthorRepository $authorRepository
      * @param UuidInterface $uuid
      * @param LoggerInterface $logger
      */
-    public function __construct(AuthorRepository $authorRepository, UuidInterface $uuid, LoggerInterface $logger)
-    {
+    public function __construct(
+        AbstractAuthorRepository $authorRepository,
+        UuidInterface $uuid,
+        LoggerInterface $logger
+    ) {
         $this->uuid = $uuid;
         $this->logger = $logger;
         $this->authorRepository = $authorRepository;

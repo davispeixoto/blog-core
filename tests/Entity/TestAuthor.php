@@ -25,7 +25,7 @@ class TestAuthor extends PHPUnit_Framework_TestCase
      * @param $message
      * @dataProvider authorConstructorProvider
      */
-    public function testConstructor($uuid, $name, $email, $bio, $birthdate, $expected, $message)
+    public function shouldConstructAuthor($uuid, $name, $email, $bio, $birthdate, $expected, $message)
     {
         $author = new Author($uuid, $name, $email, $bio, $birthdate);
         $this->assertInstanceOf($expected, $author, $message);

@@ -10,7 +10,7 @@ namespace DavisPeixoto\BlogCore\Service;
 
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\TagRepository;
+use DavisPeixoto\BlogCore\Repository\AbstractTagRepository;
 use Psr\Log\LoggerInterface;
 use Exception;
 use Ramsey\Uuid\UuidInterface;
@@ -23,7 +23,7 @@ use stdClass;
 class GetTag implements ServiceInterface
 {
     /**
-     * @var TagRepository
+     * @var AbstractTagRepository
      */
     private $tagRepository;
 
@@ -39,11 +39,11 @@ class GetTag implements ServiceInterface
 
     /**
      * GetTag constructor.
-     * @param TagRepository $tagRepository
+     * @param AbstractTagRepository $tagRepository
      * @param UuidInterface $uuid
      * @param LoggerInterface $logger
      */
-    public function __construct(TagRepository $tagRepository, UuidInterface $uuid, LoggerInterface $logger)
+    public function __construct(AbstractTagRepository $tagRepository, UuidInterface $uuid, LoggerInterface $logger)
     {
         $this->tagRepository = $tagRepository;
         $this->uuid = $uuid;

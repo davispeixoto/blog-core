@@ -10,7 +10,7 @@ namespace DavisPeixoto\BlogCore\Service;
 
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\PostRepository;
+use DavisPeixoto\BlogCore\Repository\AbstractPostRepository;
 use DavisPeixoto\BlogCore\Entity\Post;
 use Exception;
 use Psr\Log\LoggerInterface;
@@ -23,7 +23,7 @@ use Psr\Log\LoggerInterface;
 class DeletePost implements ServiceInterface
 {
     /**
-     * @var PostRepository
+     * @var AbstractPostRepository
      */
     private $postRepository;
 
@@ -39,11 +39,11 @@ class DeletePost implements ServiceInterface
 
     /**
      * DeletePost constructor.
-     * @param PostRepository $postRepository
+     * @param AbstractPostRepository $postRepository
      * @param Post $post
      * @param LoggerInterface $logger
      */
-    public function __construct(PostRepository $postRepository, Post $post, LoggerInterface $logger)
+    public function __construct(AbstractPostRepository $postRepository, Post $post, LoggerInterface $logger)
     {
         $this->postRepository = $postRepository;
         $this->post = $post;

@@ -10,7 +10,7 @@ namespace DavisPeixoto\BlogCore\Service;
 
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\AuthorRepository;
+use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
 use DavisPeixoto\BlogCore\Entity\Author;
 use Exception;
 use Psr\Log\LoggerInterface;
@@ -23,7 +23,7 @@ use Psr\Log\LoggerInterface;
 class DeleteAuthor implements ServiceInterface
 {
     /**
-     * @var AuthorRepository
+     * @var AbstractAuthorRepository
      */
     private $authorRepository;
 
@@ -39,11 +39,11 @@ class DeleteAuthor implements ServiceInterface
 
     /**
      * DeleteAuthor constructor.
-     * @param AuthorRepository $authorRepository
+     * @param AbstractAuthorRepository $authorRepository
      * @param Author $author
      * @param LoggerInterface $logger
      */
-    public function __construct(AuthorRepository $authorRepository, Author $author, LoggerInterface $logger)
+    public function __construct(AbstractAuthorRepository $authorRepository, Author $author, LoggerInterface $logger)
     {
         $this->authorRepository = $authorRepository;
         $this->author = $author;
