@@ -6,7 +6,7 @@
  * Time: 3:05 AM
  */
 
-namespace DavisPeixoto\Entity;
+namespace DavisPeixoto\BlogCore\Entity;
 
 
 use Ramsey\Uuid\UuidInterface;

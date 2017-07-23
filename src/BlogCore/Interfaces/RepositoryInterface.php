@@ -9,7 +9,7 @@
 namespace DavisPeixoto\BlogCore\Interfaces;
 
 use Exception;
-use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use stdClass;
 
 /**
@@ -26,9 +26,9 @@ interface RepositoryInterface
      *
      * @param stdClass $obj
      * @throws Exception
-     * @return Uuid
+     * @return UuidInterface
      */
-    public function save(stdClass $obj): Uuid;
+    public function save(stdClass $obj): UuidInterface;
 
     /**
      * Must receive the entity to be deleted
@@ -54,8 +54,8 @@ interface RepositoryInterface
      * Should return a single entity
      * Looking up by Uuid
      *
-     * @param Uuid $uuid
+     * @param UuidInterface $uuid
      * @return stdClass
      */
-    public function get(Uuid $uuid): stdClass;
+    public function get(UuidInterface $uuid): stdClass;
 }

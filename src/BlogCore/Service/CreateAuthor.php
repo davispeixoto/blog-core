@@ -11,10 +11,10 @@ namespace DavisPeixoto\BlogCore\Service;
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
 use DavisPeixoto\BlogCore\Repository\AuthorRepository;
-use DavisPeixoto\Entity\Author;
+use DavisPeixoto\BlogCore\Entity\Author;
 use Exception;
 use Psr\Log\LoggerInterface;
-use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class CreateAuthor
@@ -51,9 +51,9 @@ class CreateAuthor implements ServiceInterface
     }
 
     /**
-     * @return Uuid|null
+     * @return UuidInterface|null
      */
-    public function run(): Uuid
+    public function run()
     {
         try {
             return $this->authorRepository->save($this->author);

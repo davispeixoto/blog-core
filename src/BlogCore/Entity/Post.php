@@ -6,7 +6,7 @@
  * Time: 3:04 AM
  */
 
-namespace DavisPeixoto\Entity;
+namespace DavisPeixoto\BlogCore\Entity;
 
 
 use DateTime;
