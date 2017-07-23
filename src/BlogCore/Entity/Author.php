@@ -10,7 +10,7 @@ namespace DavisPeixoto\Entity;
 
 
 use DateTime;
-use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use stdClass;
 
 /**
@@ -20,7 +20,7 @@ use stdClass;
 class Author extends stdClass
 {
     /**
-     * @var Uuid
+     * @var UuidInterface
      */
     private $authorId;
 
@@ -46,13 +46,13 @@ class Author extends stdClass
 
     /**
      * Author constructor.
-     * @param Uuid $authorId
+     * @param UuidInterface $authorId
      * @param string $name
      * @param string $email
      * @param string $bio
      * @param DateTime $birthdate
      */
-    public function __construct(Uuid $authorId, $name, $email, $bio, DateTime $birthdate = null)
+    public function __construct(UuidInterface $authorId, $name, $email, $bio, DateTime $birthdate = null)
     {
         $this->authorId = $authorId;
         $this->name = $name;
@@ -63,18 +63,18 @@ class Author extends stdClass
 
     /**
      * @codeCoverageIgnore
-     * @return Uuid
+     * @return UuidInterface
      */
-    public function getAuthorId(): Uuid
+    public function getAuthorId(): UuidInterface
     {
         return $this->authorId;
     }
 
     /**
      * @codeCoverageIgnore
-     * @param Uuid $authorId
+     * @param UuidInterface $authorId
      */
-    public function setAuthorId(Uuid $authorId)
+    public function setAuthorId(UuidInterface $authorId)
     {
         $this->authorId = $authorId;
     }

@@ -9,7 +9,7 @@
 namespace DavisPeixoto\Entity;
 
 
-use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use stdClass;
 
 /**
@@ -19,7 +19,7 @@ use stdClass;
 class Trail extends stdClass
 {
     /**
-     * @var Uuid
+     * @var UuidInterface
      */
     private $trailId;
 
@@ -40,12 +40,12 @@ class Trail extends stdClass
 
     /**
      * Trail constructor.
-     * @param Uuid $trailId
+     * @param UuidInterface $trailId
      * @param string $name
      * @param string $description
      * @param Post[] $posts
      */
-    public function __construct(Uuid $trailId, $name, $description, array $posts = [])
+    public function __construct(UuidInterface $trailId, $name, $description, array $posts = [])
     {
         $this->trailId = $trailId;
         $this->name = $name;
@@ -55,18 +55,18 @@ class Trail extends stdClass
 
     /**
      * @codeCoverageIgnore
-     * @return Uuid
+     * @return UuidInterface
      */
-    public function getTrailId(): Uuid
+    public function getTrailId(): UuidInterface
     {
         return $this->trailId;
     }
 
     /**
      * @codeCoverageIgnore
-     * @param Uuid $trailId
+     * @param UuidInterface $trailId
      */
-    public function setTrailId(Uuid $trailId)
+    public function setTrailId(UuidInterface $trailId)
     {
         $this->trailId = $trailId;
     }

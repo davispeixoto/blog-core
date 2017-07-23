@@ -9,7 +9,7 @@
 namespace DavisPeixoto\Entity;
 
 
-use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use stdClass;
 
 /**
@@ -19,7 +19,7 @@ use stdClass;
 class Tag extends stdClass
 {
     /**
-     * @var Uuid
+     * @var UuidInterface
      */
     private $tagId;
     /**
@@ -29,10 +29,10 @@ class Tag extends stdClass
 
     /**
      * Tag constructor.
-     * @param Uuid $tagId
+     * @param UuidInterface $tagId
      * @param string $tagName
      */
-    public function __construct(Uuid $tagId, string $tagName)
+    public function __construct(UuidInterface $tagId, string $tagName)
     {
         $this->tagId = $tagId;
         $this->tagName = $tagName;
@@ -40,18 +40,18 @@ class Tag extends stdClass
 
     /**
      * @codeCoverageIgnore
-     * @return Uuid
+     * @return UuidInterface
      */
-    public function getTagId(): Uuid
+    public function getTagId(): UuidInterface
     {
         return $this->tagId;
     }
 
     /**
      * @codeCoverageIgnore
-     * @param Uuid $tagId
+     * @param UuidInterface $tagId
      */
-    public function setTagId(Uuid $tagId)
+    public function setTagId(UuidInterface $tagId)
     {
         $this->tagId = $tagId;
     }

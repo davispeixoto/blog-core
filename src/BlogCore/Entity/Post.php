@@ -10,7 +10,7 @@ namespace DavisPeixoto\Entity;
 
 
 use DateTime;
-use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use stdClass;
 
 /**
@@ -20,7 +20,7 @@ use stdClass;
 class Post extends stdClass
 {
     /**
-     * @var Uuid
+     * @var UuidInterface
      */
     private $postId;
 
@@ -51,14 +51,14 @@ class Post extends stdClass
 
     /**
      * Post constructor.
-     * @param Uuid $postId
+     * @param UuidInterface $postId
      * @param string $title
      * @param string $body
      * @param DateTime $publishDate
      * @param Author $authorId
      * @param Tag[]|null $tags
      */
-    public function __construct(Uuid $postId, $title, $body, DateTime $publishDate, Author $authorId, array $tags = [])
+    public function __construct(UuidInterface $postId, $title, $body, DateTime $publishDate, Author $authorId, array $tags = [])
     {
         $this->postId = $postId;
         $this->title = $title;
@@ -70,18 +70,18 @@ class Post extends stdClass
 
     /**
      * @codeCoverageIgnore
-     * @return Uuid
+     * @return UuidInterface
      */
-    public function getPostId(): Uuid
+    public function getPostId(): UuidInterface
     {
         return $this->postId;
     }
 
     /**
      * @codeCoverageIgnore
-     * @param Uuid $postId
+     * @param UuidInterface $postId
      */
-    public function setPostId(Uuid $postId)
+    public function setPostId(UuidInterface $postId)
     {
         $this->postId = $postId;
     }
