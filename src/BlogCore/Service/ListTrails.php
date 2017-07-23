@@ -10,21 +10,21 @@ namespace DavisPeixoto\BlogCore\Service;
 
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\TagRepository;
+use DavisPeixoto\BlogCore\Repository\TrailRepository;
 use Psr\Log\LoggerInterface;
 use Exception;
 use stdClass;
 
 /**
- * Class ListTags
+ * Class ListTrails
  * @package DavisPeixoto\BlogCore\Service
  */
-class ListTags implements ServiceInterface
+class ListTrails implements ServiceInterface
 {
     /**
-     * @var TagRepository
+     * @var TrailRepository
      */
-    private $tagRepository;
+    private $trailRepository;
 
     /**
      * @var array
@@ -37,14 +37,14 @@ class ListTags implements ServiceInterface
     private $logger;
 
     /**
-     * ListTags constructor.
-     * @param TagRepository $tagRepository
+     * ListTrails constructor.
+     * @param TrailRepository $trailRepository
      * @param array $filters
      * @param LoggerInterface $logger
      */
-    public function __construct(TagRepository $tagRepository, Array $filters, LoggerInterface $logger)
+    public function __construct(TrailRepository $trailRepository, Array $filters, LoggerInterface $logger)
     {
-        $this->tagRepository = $tagRepository;
+        $this->trailRepository = $trailRepository;
         $this->filters = $filters;
         $this->logger = $logger;
     }
@@ -55,7 +55,7 @@ class ListTags implements ServiceInterface
     public function run(): array
     {
         try {
-            return $this->tagRepository->getList($this->filters);
+            return $this->trailRepository->getList($this->filters);
         } catch (Exception $e) {
             $this->logger->error($e->getMessage());
         }
