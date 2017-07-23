@@ -40,7 +40,7 @@ class Author extends stdClass
     private $bio;
 
     /**
-     * @var DateTime
+     * @var DateTime|null
      */
     private $birthdate;
 
@@ -50,7 +50,7 @@ class Author extends stdClass
      * @param string $name
      * @param string $email
      * @param string $bio
-     * @param DateTime $birthdate
+     * @param DateTime|null $birthdate
      */
     public function __construct(UuidInterface $authorId, $name, $email, $bio, DateTime $birthdate = null)
     {
@@ -135,18 +135,18 @@ class Author extends stdClass
 
     /**
      * @codeCoverageIgnore
-     * @return DateTime
+     * @return DateTime|null
      */
-    public function getBirthdate(): DateTime
+    public function getBirthdate()
     {
         return $this->birthdate;
     }
 
     /**
      * @codeCoverageIgnore
-     * @param DateTime $birthdate
+     * @param DateTime|null $birthdate
      */
-    public function setBirthdate(DateTime $birthdate)
+    public function setBirthdate(DateTime $birthdate = null)
     {
         $this->birthdate = $birthdate;
     }

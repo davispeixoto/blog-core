@@ -51,7 +51,7 @@ class GetPost implements ServiceInterface
     }
 
     /**
-     * @return stdClass|boolean
+     * @return stdClass|false
      */
     public function run()
     {

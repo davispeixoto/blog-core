@@ -51,7 +51,7 @@ class GetTag implements ServiceInterface
     }
 
     /**
-     * @return stdClass|boolean
+     * @return stdClass|false
      */
     public function run()
     {

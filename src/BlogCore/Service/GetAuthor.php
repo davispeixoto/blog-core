@@ -45,13 +45,13 @@ class GetAuthor implements ServiceInterface
      */
     public function __construct(AuthorRepository $authorRepository, UuidInterface $uuid, LoggerInterface $logger)
     {
-        $this->authorRepository = $authorRepository;
         $this->uuid = $uuid;
         $this->logger = $logger;
+        $this->authorRepository = $authorRepository;
     }
 
     /**
-     * @return stdClass|boolean
+     * @return stdClass|false
      */
     public function run()
     {

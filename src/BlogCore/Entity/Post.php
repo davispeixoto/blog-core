@@ -56,7 +56,7 @@ class Post extends stdClass
      * @param string $body
      * @param DateTime $publishDate
      * @param Author $authorId
-     * @param Tag[]|null $tags
+     * @param Tag[] $tags
      */
     public function __construct(
         UuidInterface $postId,
