@@ -107,12 +107,15 @@ class Author extends stdClass
     }
 
     /**
-     * @codeCoverageIgnore
      * @param string $email
      */
     public function setEmail(string $email)
     {
-        $this->email = $email;
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+        if ($email !== false) {
+            $this->email = $email;
+        }
     }
 
     /**
