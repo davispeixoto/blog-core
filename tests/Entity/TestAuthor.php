@@ -58,7 +58,8 @@ class TestAuthor extends PHPUnit_Framework_TestCase
 
         return [
             [$author, 'example.org', 'email@example.org', 'Negative test'],
-            [$author, 'email2@example.org', 'email2@example.org', 'Positive test']
+            [$author, 'email2@example.org', 'email2@example.org', 'Positive test'],
+            [$author, '$#email2@example.org$#', 'email2@example.org', 'Positive test - dirty email']
         ];
     }
 }
