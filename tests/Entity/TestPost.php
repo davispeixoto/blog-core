@@ -97,22 +97,31 @@ class TestPost extends PHPUnit_Framework_TestCase
         $date1 = new DateTime();
 
         return [
-            [null, null, 'Null test'],
-            [$date1, $date1, 'Positive test']
+            [null, null, 'Null Test'],
+            [$date1, $date1, 'Positive Test'],
+//            ['X', null, 'Negative Test']
         ];
     }
 
     public function addTagProvider()
     {
+        $tag1 = new Tag(Uuid::uuid4(), 'tag 1');
+
         return [
-            [],
+            [$tag1, [$tag1], 'Positive Test'],
+            [null, null, 'Negative Test']
         ];
     }
 
     public function removeTagProvider()
     {
+        $tag1 = new Tag(Uuid::uuid4(), 'tag 1');
+        $tag2 = new Tag(Uuid::uuid4(), 'tag 2');
+
         return [
-            [],
+            [[$tag1], $tag1, [], 'positive test, all tags removed'],
+            [[$tag1, $tag2], $tag1, [$tag2], 'positive test, removing one tag'],
+            [[$tag1], $tag2, [$tag1], 'negative test, removing non-existent tag'],
         ];
     }
 }
