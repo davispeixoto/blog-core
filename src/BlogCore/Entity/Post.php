@@ -35,7 +35,7 @@ class Post extends stdClass
     private $body;
 
     /**
-     * @var DateTime
+     * @var DateTime|null
      */
     private $publishDate;
 
@@ -54,17 +54,17 @@ class Post extends stdClass
      * @param UuidInterface $postId
      * @param string $title
      * @param string $body
-     * @param DateTime $publishDate
      * @param Author $authorId
      * @param Tag[] $tags
+     * @param DateTime|null $publishDate
      */
     public function __construct(
         UuidInterface $postId,
         $title,
         $body,
-        DateTime $publishDate,
         Author $authorId,
-        array $tags = []
+        array $tags = [],
+        DateTime $publishDate = null
     ) {
         $this->postId = $postId;
         $this->title = $title;
@@ -129,19 +129,17 @@ class Post extends stdClass
     }
 
     /**
-     * @codeCoverageIgnore
-     * @return DateTime
+     * @return DateTime|null
      */
-    public function getPublishDate(): DateTime
+    public function getPublishDate()
     {
         return $this->publishDate;
     }
 
     /**
-     * @codeCoverageIgnore
-     * @param DateTime $publishDate
+     * @param DateTime|null $publishDate
      */
-    public function setPublishDate(DateTime $publishDate)
+    public function setPublishDate(DateTime $publishDate = null)
     {
         $this->publishDate = $publishDate;
     }
@@ -165,7 +163,6 @@ class Post extends stdClass
     }
 
     /**
-     * @codeCoverageIgnore
      * @return Tag[]
      */
     public function getTags(): array
@@ -174,14 +171,17 @@ class Post extends stdClass
     }
 
     /**
-     * @codeCoverageIgnore
-     * @param Tag[] $tags
+     * @param Tag[]|array $tags
      */
-    public function setTags(array $tags)
+    public function setTags(array $tags = [])
     {
         $this->tags = array_unique($tags);
     }
 
+    /**
+     * @param Tag $tag
+     * @return $this
+     */
     public function addTag(Tag $tag)
     {
         $tags = $this->tags;
@@ -191,6 +191,10 @@ class Post extends stdClass
         return $this;
     }
 
+    /**
+     * @param Tag $tag
+     * @return $this
+     */
     public function removeTag(Tag $tag)
     {
         foreach ($this->getTags() as $key => $value) {
