@@ -175,7 +175,7 @@ class Post extends stdClass
      */
     public function setTags(array $tags = [])
     {
-        $this->tags = array_unique($tags);
+        $this->tags = array_unique($tags, SORT_REGULAR);
     }
 
     /**
@@ -184,7 +184,7 @@ class Post extends stdClass
      */
     public function addTag(Tag $tag)
     {
-        $tags = $this->tags;
+        $tags = $this->getTags();
         $tags[] = $tag;
         $this->setTags($tags);
 
@@ -200,6 +200,7 @@ class Post extends stdClass
         foreach ($this->getTags() as $key => $value) {
             if ($value->getTagId() === $tag->getTagId()) {
                 unset($this->tags[$key]);
+                sort($this->tags);
 
                 return $this;
             }

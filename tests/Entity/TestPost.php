@@ -57,13 +57,15 @@ class TestPost extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param $tags
      * @param $tag
      * @param $expected
      * @param $message
      * @dataProvider addTagProvider
      */
-    public function testAddTag($tag, $expected, $message)
+    public function testAddTag($tags, $tag, $expected, $message)
     {
+        $this->post->setTags($tags);
         $this->post->addTag($tag);
         $this->assertEquals($expected, $this->post->getTags(), $message);
     }
@@ -98,18 +100,19 @@ class TestPost extends PHPUnit_Framework_TestCase
 
         return [
             [null, null, 'Null Test'],
-            [$date1, $date1, 'Positive Test'],
-//            ['X', null, 'Negative Test']
+            [$date1, $date1, 'Positive Test']
         ];
     }
 
     public function addTagProvider()
     {
         $tag1 = new Tag(Uuid::uuid4(), 'tag 1');
+        $tag2 = new Tag(Uuid::uuid4(), 'tag 2');
 
         return [
-            [$tag1, [$tag1], 'Positive Test'],
-            [null, null, 'Negative Test']
+            [[], $tag1, [$tag1], 'positive test, on null, first tag added'],
+            [[$tag1], $tag2, [$tag1, $tag2], 'positive test, adding a new tag to existing tag vector'],
+            [[$tag1, $tag2], $tag1, [$tag1, $tag2], 'negative test, tags should not be duplicated']
         ];
     }
 
@@ -121,7 +124,7 @@ class TestPost extends PHPUnit_Framework_TestCase
         return [
             [[$tag1], $tag1, [], 'positive test, all tags removed'],
             [[$tag1, $tag2], $tag1, [$tag2], 'positive test, removing one tag'],
-            [[$tag1], $tag2, [$tag1], 'negative test, removing non-existent tag'],
+            [[$tag1], $tag2, [$tag1], 'negative test, removing non-existent tag']
         ];
     }
 }
