@@ -108,7 +108,6 @@ class Trail extends stdClass
     }
 
     /**
-     * @codeCoverageIgnore
      * @return Post[]
      */
     public function getPosts(): array
@@ -117,12 +116,11 @@ class Trail extends stdClass
     }
 
     /**
-     * @codeCoverageIgnore
      * @param Post[] $posts
      */
     public function setPosts($posts)
     {
-        $this->posts = array_unique($posts);
+        $this->posts = array_unique($posts, SORT_REGULAR);
     }
 
     /**
@@ -147,6 +145,7 @@ class Trail extends stdClass
         foreach ($this->getPosts() as $key => $value) {
             if ($value->getPostId() === $post->getPostId()) {
                 unset($this->posts[$key]);
+                sort($this->posts);
 
                 return $this;
             }
