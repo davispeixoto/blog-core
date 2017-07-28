@@ -10,10 +10,10 @@ namespace DavisPeixoto\BlogCore\Tests\Entity;
 
 use DateTime;
 use DavisPeixoto\BlogCore\Entity\Author;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
-class TestAuthor extends PHPUnit_Framework_TestCase
+class TestAuthor extends TestCase
 {
     /**
      * @param $uuid

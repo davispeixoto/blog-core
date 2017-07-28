@@ -12,10 +12,10 @@ use DateTime;
 use DavisPeixoto\BlogCore\Entity\Post;
 use DavisPeixoto\BlogCore\Entity\Author;
 use DavisPeixoto\BlogCore\Entity\Tag;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
-class TestPost extends PHPUnit_Framework_TestCase
+class TestPost extends TestCase
 {
     /**
      * @Post $post
