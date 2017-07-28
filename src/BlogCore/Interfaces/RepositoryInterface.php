@@ -55,7 +55,7 @@ interface RepositoryInterface
      * Looking up by Uuid
      *
      * @param UuidInterface $uuid
-     * @return stdClass
+     * @return stdClass|false
      */
-    public function get(UuidInterface $uuid): stdClass;
+    public function get(UuidInterface $uuid);
 }

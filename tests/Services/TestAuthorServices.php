@@ -20,17 +20,135 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Psr\Log\LoggerInterface;
 use DateTime;
+use Exception;
 
 class TestAuthorServices extends TestCase
 {
-    public function testShouldCreateAuthorService()
+    /**
+     * @LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @LoggerInterface
+     */
+    private $loggerWillBeCalled;
+
+    /**
+     * @RepositoryInterface
+     */
+    private $authorRepository;
+
+    /**
+     * @UuidInterface
+     */
+    private $uuid;
+
+    /**
+     * @Author
+     */
+    private $author;
+
+    /**
+     * @array
+     */
+    private $filters;
+
+    public function setUp()
     {
-        $logger = $this->createMock(LoggerInterface::class);
-        $uuidInterface = $this->createMock(UuidInterface::class);
-        $author = new Author(Uuid::uuid4(), 'Davis', 'email@example.org', 'Some string', new DateTime());
-        $authorRepo = $this->getMockForAbstractClass(AbstractAuthorRepository::class);
-        $authorRepo->expects($this->once())->method('save')->will($this->returnValue($uuidInterface));
-        $service = new CreateAuthor($authorRepo, $author, $logger);
-        $this->assertEquals($uuidInterface, $service->run(), 'called once!');
+        $this->logger = $this->createMock(LoggerInterface::class);
+        $this->authorRepository = $this->getMockForAbstractClass(AbstractAuthorRepository::class);
+        $this->uuid = Uuid::uuid4();
+        $this->author = new Author($this->uuid, 'Davis', 'email@example.org', 'Some string', new DateTime());
+        $this->filters = [];
+    }
+
+    public function testCreateAuthorService()
+    {
+        $this->authorRepository->expects($this->once())->method('save')->will($this->returnValue($this->uuid));
+        $service = new CreateAuthor($this->authorRepository, $this->author, $this->logger);
+        $this->assertEquals($this->uuid, $service->run(), 'called once!');
+    }
+
+    public function testCreateAuthorServiceShouldReturnNullOnFailure()
+    {
+        $this->logger->expects($this->once())->method('error');
+        $this->authorRepository->expects($this->once())->method('save')->will($this->throwException(new Exception()));
+        $service = new CreateAuthor($this->authorRepository, $this->author, $this->logger);
+        $this->assertEquals(null, $service->run(), 'Test exception');
+    }
+
+    public function testEditAuthorService()
+    {
+        $this->authorRepository->expects($this->once())->method('save')->will($this->returnValue($this->uuid));
+        $service = new EditAuthor($this->authorRepository, $this->author, $this->logger);
+        $this->assertEquals($this->uuid, $service->run(), 'called once!');
+    }
+
+    public function testEditAuthorServiceShouldReturnNullOnFailure()
+    {
+        $this->logger->expects($this->once())->method('error');
+        $this->authorRepository->expects($this->once())->method('save')->will($this->throwException(new Exception()));
+        $service = new EditAuthor($this->authorRepository, $this->author, $this->logger);
+        $this->assertEquals(null, $service->run(), 'Test exception');
+    }
+
+    public function testDeleteAuthorService()
+    {
+        $this->authorRepository->expects($this->once())->method('delete')->will($this->returnValue(true));
+        $service = new DeleteAuthor($this->authorRepository, $this->author, $this->logger);
+        $this->assertEquals(true, $service->run(), 'Success');
+    }
+
+    public function testDeleteAuthorServiceReturningFalse()
+    {
+        $this->authorRepository->expects($this->once())->method('delete')->will($this->returnValue(false));
+        $service = new DeleteAuthor($this->authorRepository, $this->author, $this->logger);
+        $this->assertEquals(false, $service->run(), 'Success');
+    }
+
+    public function testDeleteAuthorServiceShouldReturnFalseOnFailure()
+    {
+        $this->logger->expects($this->once())->method('error');
+        $this->authorRepository->expects($this->once())->method('delete')->will($this->throwException(new Exception()));
+        $service = new DeleteAuthor($this->authorRepository, $this->author, $this->logger);
+        $this->assertEquals(false, $service->run(), 'Test exception');
+    }
+
+    public function testGetAuthorService()
+    {
+        $this->authorRepository->expects($this->once())->method('get')->will($this->returnValue($this->author));
+        $service = new GetAuthor($this->authorRepository, $this->uuid, $this->logger);
+        $this->assertEquals($this->author, $service->run(), 'Success');
+    }
+
+    public function testGetAuthorServiceReturningException()
+    {
+        $this->logger->expects($this->once())->method('error');
+        $this->authorRepository->expects($this->once())->method('get')->will($this->throwException(new Exception()));
+        $service = new GetAuthor($this->authorRepository, $this->uuid, $this->logger);
+        $this->assertEquals(false, $service->run(), 'Exception');
+    }
+
+    public function testGetAuthorServiceReturningFalse()
+    {
+        $this->authorRepository->expects($this->once())->method('get')->will($this->returnValue(false));
+        $service = new GetAuthor($this->authorRepository, $this->uuid, $this->logger);
+        $this->assertEquals(false, $service->run(), 'False');
+    }
+
+    public function testGetAuthorsListService()
+    {
+        $this->authorRepository->expects($this->once())->method('getList')->with($this->filters)->will($this->returnValue([$this->author]));
+        $service = new ListAuthors($this->authorRepository, $this->filters, $this->logger);
+        $this->assertEquals([$this->author], $service->run(), 'Success');
+    }
+
+    public function testGetAuthorsListServiceException()
+    {
+        $this->logger->expects($this->once())->method('error');
+        $this->authorRepository->expects($this->once())->method('getList')->with($this->filters)->will($this->throwException(new Exception()));
+        $service = new ListAuthors($this->authorRepository, $this->filters, $this->logger);
+        $this->assertEquals([], $service->run(), 'Exception');
     }
 }
