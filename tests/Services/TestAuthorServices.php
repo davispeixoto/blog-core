@@ -17,16 +17,20 @@ use DavisPeixoto\BlogCore\Service\GetAuthor;
 use DavisPeixoto\BlogCore\Service\ListAuthors;
 use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
+use Psr\Log\LoggerInterface;
 use DateTime;
 
 class TestAuthorServices extends TestCase
 {
     public function testShouldCreateAuthorService()
     {
-        $authorRepo = 1;
-        $logger = 2;
+        $logger = $this->createMock(LoggerInterface::class);
+        $uuidInterface = $this->createMock(UuidInterface::class);
         $author = new Author(Uuid::uuid4(), 'Davis', 'email@example.org', 'Some string', new DateTime());
+        $authorRepo = $this->getMockForAbstractClass(AbstractAuthorRepository::class);
+        $authorRepo->expects($this->once())->method('save')->will($this->returnValue($uuidInterface));
         $service = new CreateAuthor($authorRepo, $author, $logger);
-        $this->assertEquals($expected, $service->run(), $message);
+        $this->assertEquals($uuidInterface, $service->run(), 'called once!');
     }
 }
