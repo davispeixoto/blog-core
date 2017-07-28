@@ -22,6 +22,7 @@ class Tag extends stdClass
      * @var UuidInterface
      */
     private $tagId;
+
     /**
      * @var string
      */
@@ -31,6 +32,7 @@ class Tag extends stdClass
      * Tag constructor.
      * @param UuidInterface $tagId
      * @param string $tagName
+     * @codeCoverageIgnore
      */
     public function __construct(UuidInterface $tagId, string $tagName)
     {
@@ -73,5 +75,4 @@ class Tag extends stdClass
     {
         $this->tagName = $tagName;
     }
-
 }

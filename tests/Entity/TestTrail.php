@@ -11,20 +11,31 @@ namespace DavisPeixoto\BlogCore\Tests\Entity;
 use DateTime;
 use DavisPeixoto\BlogCore\Entity\Post;
 use DavisPeixoto\BlogCore\Entity\Author;
-use DavisPeixoto\BlogCore\Entity\Tag;
 use DavisPeixoto\BlogCore\Entity\Trail;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
-class TestTrail extends PHPUnit_Framework_TestCase
+class TestTrail extends TestCase
 {
     /**
      * @Trail $trail
      */
     private $trail;
 
+    /**
+     * @Post $post1
+     */
+    private $post1;
+
+    /**
+     * @Post $post2
+     */
+    private $post2;
+
     public function setUp()
     {
+        $this->post1 = new Post(Uuid::uuid4(), 'Post 1', 'Lorem ipsum', new Author(Uuid::uuid4(), 'Davis', 'email@example.org', 'Some string', new DateTime()), [], null);
+        $this->post2 = new Post(Uuid::uuid4(), 'Post 2', 'Lorem ipsum', new Author(Uuid::uuid4(), 'John Doe', 'email@example.org', 'Some string', new DateTime()), [], null);
         $this->trail = new Trail(Uuid::uuid4(), 'A Trail', 'Lorem ipsum sit dolor amet', []);
     }
 
@@ -39,7 +50,7 @@ class TestTrail extends PHPUnit_Framework_TestCase
      */
     public function testConstructor($uuid, $name, $description, $posts, $expected, $message)
     {
-        $post = new Post($uuid, $name, $description, $posts);
+        $post = new Trail($uuid, $name, $description, $posts);
         $this->assertInstanceOf($expected, $post, $message);
     }
 
@@ -50,7 +61,7 @@ class TestTrail extends PHPUnit_Framework_TestCase
      * @param $message
      * @dataProvider addPostProvider
      */
-    public function testAddTag($posts, $post, $expected, $message)
+    public function testAddPost($posts, $post, $expected, $message)
     {
         $this->trail->setPosts($posts);
         $this->trail->addPost($post);
@@ -73,35 +84,31 @@ class TestTrail extends PHPUnit_Framework_TestCase
 
     public function trailConstructor()
     {
+        $this->setUp();
         return [
-            [Uuid::uuid4(), 'A Post', 'Lorem ipsum', new Author(Uuid::uuid4(), 'Davis', 'email@example.org', 'Some string', new DateTime()), [], null, Post::class, 'no tags, no publish date'],
-            [Uuid::uuid4(), 'A Post', 'Lorem ipsum', new Author(Uuid::uuid4(), 'Davis', 'email@example.org', 'Some string', new DateTime()), [new Tag(Uuid::uuid4(),'tag1'), new Tag(Uuid::uuid4(),'tag2')], null, Post::class, 'have tags, unpublished'],
-            [Uuid::uuid4(), 'A Post', 'Lorem ipsum', new Author(Uuid::uuid4(), 'Davis', 'email@example.org', 'Some string', new DateTime()), [], new DateTime(), Post::class, 'no tags, published'],
-            [Uuid::uuid4(), 'A Post', 'Lorem ipsum', new Author(Uuid::uuid4(), 'Davis', 'email@example.org', 'Some string', new DateTime()), [new Tag(Uuid::uuid4(),'tag1'), new Tag(Uuid::uuid4(),'tag2')], new DateTime(), Post::class, 'tags, published (most common scenario)']
+            [Uuid::uuid4(), 'A Trail', 'Lorem ipsum sit dolor amet', [], Trail::class, 'no posts'],
+            [Uuid::uuid4(), 'A Trail', 'Lorem ipsum sit dolor amet', [$this->post1], Trail::class, 'one post'],
+            [Uuid::uuid4(), 'A Trail', 'Lorem ipsum sit dolor amet', [$this->post1, $this->post2], Trail::class, 'more posts'],
         ];
     }
 
     public function addPostProvider()
     {
-        $tag1 = new Tag(Uuid::uuid4(), 'tag 1');
-        $tag2 = new Tag(Uuid::uuid4(), 'tag 2');
-
+        $this->setUp();
         return [
-            [[], $tag1, [$tag1], 'positive test, on null, first tag added'],
-            [[$tag1], $tag2, [$tag1, $tag2], 'positive test, adding a new tag to existing tag vector'],
-            [[$tag1, $tag2], $tag1, [$tag1, $tag2], 'negative test, tags should not be duplicated']
+            [[], $this->post1, [$this->post1], 'positive test, on null, first post added'],
+            [[$this->post1], $this->post2, [$this->post1, $this->post2], 'positive test, adding a new post to existing posts vector'],
+            [[$this->post1, $this->post2], $this->post1, [$this->post1, $this->post2], 'negative test, posts should not be duplicated']
         ];
     }
 
     public function removePostProvider()
     {
-        $tag1 = new Tag(Uuid::uuid4(), 'tag 1');
-        $tag2 = new Tag(Uuid::uuid4(), 'tag 2');
-
+        $this->setUp();
         return [
-            [[$tag1], $tag1, [], 'positive test, all tags removed'],
-            [[$tag1, $tag2], $tag1, [$tag2], 'positive test, removing one tag'],
-            [[$tag1], $tag2, [$tag1], 'negative test, removing non-existent tag']
+            [[$this->post1], $this->post1, [], 'positive test, all tags removed'],
+            [[$this->post1, $this->post2], $this->post1, [$this->post2], 'positive test, removing one tag'],
+            [[$this->post1], $this->post2, [$this->post1], 'negative test, removing non-existent tag']
         ];
     }
 }

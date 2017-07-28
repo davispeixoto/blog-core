@@ -8,9 +8,9 @@
 
 namespace DavisPeixoto\BlogCore\Tests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class TestCreateAuthorService extends PHPUnit_Framework_TestCase
+class TestCreateAuthorService extends TestCase
 {
     public function testService()
     {
