@@ -30,11 +30,6 @@ class TestAuthorServices extends TestCase
     private $logger;
 
     /**
-     * @LoggerInterface
-     */
-    private $loggerWillBeCalled;
-
-    /**
      * @RepositoryInterface
      */
     private $authorRepository;
