@@ -8,21 +8,14 @@
 
 namespace DavisPeixoto\BlogCore\Entity;
 
-
-use Ramsey\Uuid\UuidInterface;
-use stdClass;
+use Ramsey\Uuid\Exception\InvalidUuidStringException;
 
 /**
  * Class Tag
  * @package DavisPeixoto\BlogCore\Entity
  */
-class Tag extends stdClass
+class Tag extends AbstractEntity
 {
-    /**
-     * @var UuidInterface
-     */
-    private $tagId;
-
     /**
      * @var string
      */
@@ -30,32 +23,15 @@ class Tag extends stdClass
 
     /**
      * Tag constructor.
-     * @param UuidInterface $tagId
      * @param string $tagName
+     * @param string|null $id
+     * @throws InvalidUuidStringException
      * @codeCoverageIgnore
      */
-    public function __construct(UuidInterface $tagId, string $tagName)
+    public function __construct(string $tagName, string $id = null)
     {
-        $this->tagId = $tagId;
-        $this->tagName = $tagName;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     * @return UuidInterface
-     */
-    public function getTagId(): UuidInterface
-    {
-        return $this->tagId;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     * @param UuidInterface $tagId
-     */
-    public function setTagId(UuidInterface $tagId)
-    {
-        $this->tagId = $tagId;
+        $this->setId($id);
+        $this->setTagName($tagName);
     }
 
     /**

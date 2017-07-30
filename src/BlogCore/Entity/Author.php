@@ -10,6 +10,7 @@ namespace DavisPeixoto\BlogCore\Entity;
 
 
 use DateTime;
+use Ramsey\Uuid\Exception\InvalidUuidStringException;
 
 /**
  * Class Author
@@ -44,6 +45,7 @@ class Author extends AbstractEntity
      * @param string $bio
      * @param string|null $id
      * @param DateTime|null $birthdate
+     * @throws InvalidUuidStringException
      */
     public function __construct($name, $email, $bio, $id = null, DateTime $birthdate = null)
     {

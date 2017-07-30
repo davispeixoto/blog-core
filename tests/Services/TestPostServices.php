@@ -67,7 +67,7 @@ class TestPostServices extends TestCase
         $this->uuid = Uuid::uuid4();
         $this->authorUuid = Uuid::uuid4();
         $this->author = new Author('Davis', 'email@example.org', 'Some string', $this->authorUuid, new DateTime());
-        $this->post = new Post($this->uuid, 'A Post', 'Lorem ipsum', $this->author, [], null);
+        $this->post = new Post('A Post', 'Lorem ipsum', $this->author, $this->uuid, [], null);
         $this->filters = [];
     }
 

@@ -24,8 +24,8 @@ class TestPost extends TestCase
 
     public function setUp()
     {
-        $this->post = new Post(Uuid::uuid4(), 'A Post', 'Lorem ipsum', new Author('Davis', 'email@example.org',
-            'Some string', Uuid::uuid4(), new DateTime()), [], null);
+        $this->post = new Post('A Post', 'Lorem ipsum', new Author('Davis', 'email@example.org',
+            'Some string', Uuid::uuid4(), new DateTime()), Uuid::uuid4(), [], null);
     }
 
     /**
@@ -41,7 +41,7 @@ class TestPost extends TestCase
      */
     public function testConstructor($uuid, $title, $body, $author, $tags, $publishDate, $expected, $message)
     {
-        $post = new Post($uuid, $title, $body, $author, $tags, $publishDate);
+        $post = new Post($title, $body, $author, $uuid, $tags, $publishDate);
         $this->assertInstanceOf($expected, $post, $message);
     }
 
@@ -105,7 +105,7 @@ class TestPost extends TestCase
                 'Lorem ipsum',
                 new Author('Davis', 'email@example.org', 'Some string',
                     Uuid::uuid4(), new DateTime()),
-                [new Tag(Uuid::uuid4(), 'tag1'), new Tag(Uuid::uuid4(), 'tag2')],
+                [new Tag('tag1', Uuid::uuid4()), new Tag('tag2', Uuid::uuid4())],
                 null,
                 Post::class,
                 'have tags, unpublished',
@@ -127,11 +127,11 @@ class TestPost extends TestCase
                 'Lorem ipsum',
                 new Author('Davis', 'email@example.org', 'Some string',
                     Uuid::uuid4(), new DateTime()),
-                [new Tag(Uuid::uuid4(), 'tag1'), new Tag(Uuid::uuid4(), 'tag2')],
+                [new Tag('tag1', Uuid::uuid4()), new Tag('tag2', Uuid::uuid4())],
                 new DateTime(),
                 Post::class,
                 'tags, published (most common scenario)',
-            ],
+            ]
         ];
     }
 
@@ -147,8 +147,8 @@ class TestPost extends TestCase
 
     public function addTagProvider()
     {
-        $tag1 = new Tag(Uuid::uuid4(), 'tag 1');
-        $tag2 = new Tag(Uuid::uuid4(), 'tag 2');
+        $tag1 = new Tag('tag 1', null);
+        $tag2 = new Tag('tag 2', Uuid::uuid4()->toString());
 
         return [
             [[], $tag1, [$tag1], 'positive test, on null, first tag added'],
@@ -159,8 +159,8 @@ class TestPost extends TestCase
 
     public function removeTagProvider()
     {
-        $tag1 = new Tag(Uuid::uuid4(), 'tag 1');
-        $tag2 = new Tag(Uuid::uuid4(), 'tag 2');
+        $tag1 = new Tag('tag 1', '');
+        $tag2 = new Tag('tag 2', null);
 
         return [
             [[$tag1], $tag1, [], 'positive test, all tags removed'],

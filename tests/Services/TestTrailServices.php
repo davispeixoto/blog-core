@@ -79,8 +79,8 @@ class TestTrailServices extends TestCase
         $this->author = new Author('Davis', 'email@example.org', 'Some string', $this->authorUuid, new DateTime());
         $this->postUuid = Uuid::uuid4();
         $this->uuid = Uuid::uuid4();
-        $this->post = new Post($this->postUuid, 'A Post', 'Lorem ipsum', $this->author, [], null);
-        $this->trail = new Trail($this->uuid, 'A trail', 'An amazing trail', [$this->post]);
+        $this->post = new Post('A Post', 'Lorem ipsum', $this->author, $this->postUuid, [], null);
+        $this->trail = new Trail('A trail', 'An amazing trail', $this->uuid, [$this->post]);
         $this->filters = [];
     }
 

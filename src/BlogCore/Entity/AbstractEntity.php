@@ -24,7 +24,7 @@ class AbstractEntity extends stdClass
     /**
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id->toString();
     }
