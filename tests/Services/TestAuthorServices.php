@@ -8,19 +8,19 @@
 
 namespace DavisPeixoto\BlogCore\Tests\Services;
 
-use PHPUnit\Framework\TestCase;
+use DateTime;
 use DavisPeixoto\BlogCore\Entity\Author;
+use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
 use DavisPeixoto\BlogCore\Service\CreateAuthor;
-use DavisPeixoto\BlogCore\Service\EditAuthor;
 use DavisPeixoto\BlogCore\Service\DeleteAuthor;
+use DavisPeixoto\BlogCore\Service\EditAuthor;
 use DavisPeixoto\BlogCore\Service\GetAuthor;
 use DavisPeixoto\BlogCore\Service\ListAuthors;
-use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
+use Exception;
+use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use Psr\Log\LoggerInterface;
-use DateTime;
-use Exception;
 
 class TestAuthorServices extends TestCase
 {
@@ -54,7 +54,7 @@ class TestAuthorServices extends TestCase
         $this->logger = $this->createMock(LoggerInterface::class);
         $this->authorRepository = $this->getMockForAbstractClass(AbstractAuthorRepository::class);
         $this->uuid = Uuid::uuid4();
-        $this->author = new Author($this->uuid, 'Davis', 'email@example.org', 'Some string', new DateTime());
+        $this->author = new Author('Davis', 'email@example.org', 'Some string', $this->uuid, new DateTime());
         $this->filters = [];
     }
 

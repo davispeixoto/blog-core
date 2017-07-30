@@ -8,21 +8,21 @@
 
 namespace DavisPeixoto\BlogCore\Tests\Services;
 
+use DateTime;
 use DavisPeixoto\BlogCore\Entity\Author;
 use DavisPeixoto\BlogCore\Entity\Post;
 use DavisPeixoto\BlogCore\Entity\Trail;
-use PHPUnit\Framework\TestCase;
+use DavisPeixoto\BlogCore\Repository\AbstractTrailRepository;
 use DavisPeixoto\BlogCore\Service\CreateTrail;
-use DavisPeixoto\BlogCore\Service\EditTrail;
 use DavisPeixoto\BlogCore\Service\DeleteTrail;
+use DavisPeixoto\BlogCore\Service\EditTrail;
 use DavisPeixoto\BlogCore\Service\GetTrail;
 use DavisPeixoto\BlogCore\Service\ListTrails;
-use DavisPeixoto\BlogCore\Repository\AbstractTrailRepository;
+use Exception;
+use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use Psr\Log\LoggerInterface;
-use DateTime;
-use Exception;
 
 class TestTrailServices extends TestCase
 {
@@ -76,7 +76,7 @@ class TestTrailServices extends TestCase
         $this->logger = $this->createMock(LoggerInterface::class);
         $this->trailRepository = $this->getMockForAbstractClass(AbstractTrailRepository::class);
         $this->authorUuid = Uuid::uuid4();
-        $this->author = new Author($this->authorUuid, 'Davis', 'email@example.org', 'Some string', new DateTime());
+        $this->author = new Author('Davis', 'email@example.org', 'Some string', $this->authorUuid, new DateTime());
         $this->postUuid = Uuid::uuid4();
         $this->uuid = Uuid::uuid4();
         $this->post = new Post($this->postUuid, 'A Post', 'Lorem ipsum', $this->author, [], null);

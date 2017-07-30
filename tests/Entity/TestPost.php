@@ -9,8 +9,8 @@
 namespace DavisPeixoto\BlogCore\Tests\Entity;
 
 use DateTime;
-use DavisPeixoto\BlogCore\Entity\Post;
 use DavisPeixoto\BlogCore\Entity\Author;
+use DavisPeixoto\BlogCore\Entity\Post;
 use DavisPeixoto\BlogCore\Entity\Tag;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
@@ -24,7 +24,8 @@ class TestPost extends TestCase
 
     public function setUp()
     {
-        $this->post = new Post(Uuid::uuid4(), 'A Post', 'Lorem ipsum', new Author(Uuid::uuid4(), 'Davis', 'email@example.org', 'Some string', new DateTime()), [], null);
+        $this->post = new Post(Uuid::uuid4(), 'A Post', 'Lorem ipsum', new Author('Davis', 'email@example.org',
+            'Some string', Uuid::uuid4(), new DateTime()), [], null);
     }
 
     /**
@@ -87,10 +88,50 @@ class TestPost extends TestCase
     public function postConstructor()
     {
         return [
-            [Uuid::uuid4(), 'A Post', 'Lorem ipsum', new Author(Uuid::uuid4(), 'Davis', 'email@example.org', 'Some string', new DateTime()), [], null, Post::class, 'no tags, no publish date'],
-            [Uuid::uuid4(), 'A Post', 'Lorem ipsum', new Author(Uuid::uuid4(), 'Davis', 'email@example.org', 'Some string', new DateTime()), [new Tag(Uuid::uuid4(),'tag1'), new Tag(Uuid::uuid4(),'tag2')], null, Post::class, 'have tags, unpublished'],
-            [Uuid::uuid4(), 'A Post', 'Lorem ipsum', new Author(Uuid::uuid4(), 'Davis', 'email@example.org', 'Some string', new DateTime()), [], new DateTime(), Post::class, 'no tags, published'],
-            [Uuid::uuid4(), 'A Post', 'Lorem ipsum', new Author(Uuid::uuid4(), 'Davis', 'email@example.org', 'Some string', new DateTime()), [new Tag(Uuid::uuid4(),'tag1'), new Tag(Uuid::uuid4(),'tag2')], new DateTime(), Post::class, 'tags, published (most common scenario)']
+            [
+                Uuid::uuid4(),
+                'A Post',
+                'Lorem ipsum',
+                new Author('Davis', 'email@example.org', 'Some string',
+                    Uuid::uuid4(), new DateTime()),
+                [],
+                null,
+                Post::class,
+                'no tags, no publish date',
+            ],
+            [
+                Uuid::uuid4(),
+                'A Post',
+                'Lorem ipsum',
+                new Author('Davis', 'email@example.org', 'Some string',
+                    Uuid::uuid4(), new DateTime()),
+                [new Tag(Uuid::uuid4(), 'tag1'), new Tag(Uuid::uuid4(), 'tag2')],
+                null,
+                Post::class,
+                'have tags, unpublished',
+            ],
+            [
+                Uuid::uuid4(),
+                'A Post',
+                'Lorem ipsum',
+                new Author('Davis', 'email@example.org', 'Some string',
+                    Uuid::uuid4(), new DateTime()),
+                [],
+                new DateTime(),
+                Post::class,
+                'no tags, published',
+            ],
+            [
+                Uuid::uuid4(),
+                'A Post',
+                'Lorem ipsum',
+                new Author('Davis', 'email@example.org', 'Some string',
+                    Uuid::uuid4(), new DateTime()),
+                [new Tag(Uuid::uuid4(), 'tag1'), new Tag(Uuid::uuid4(), 'tag2')],
+                new DateTime(),
+                Post::class,
+                'tags, published (most common scenario)',
+            ],
         ];
     }
 
