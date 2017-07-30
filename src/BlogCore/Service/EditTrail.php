@@ -9,58 +9,24 @@
 namespace DavisPeixoto\BlogCore\Service;
 
 
-use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\AbstractTrailRepository;
 use DavisPeixoto\BlogCore\Entity\Trail;
-use Exception;
+use DavisPeixoto\BlogCore\Repository\AbstractTrailRepository;
 use Psr\Log\LoggerInterface;
-use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class EditTrail
  * @package DavisPeixoto\BlogCore\Service
  */
-class EditTrail implements ServiceInterface
+class EditTrail extends AbstractSaveService
 {
     /**
-     * @var AbstractTrailRepository
-     */
-    private $trailRepository;
-
-    /**
-     * @var Trail
-     */
-    private $trail;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
      * EditTrail constructor.
-     * @param AbstractTrailRepository $trailRepository
-     * @param Trail $trail
+     * @param AbstractTrailRepository $repository
+     * @param Trail $entity
      * @param LoggerInterface $logger
      */
-    public function __construct(AbstractTrailRepository $trailRepository, Trail $trail, LoggerInterface $logger)
+    public function __construct(AbstractTrailRepository $repository, Trail $entity, LoggerInterface $logger)
     {
-        $this->trailRepository = $trailRepository;
-        $this->trail = $trail;
-        $this->logger = $logger;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function run()
-    {
-        try {
-            return $this->trailRepository->save($this->trail);
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage());
-        }
-
-        return null;
+        parent::__construct($repository, $entity, $logger);
     }
 }

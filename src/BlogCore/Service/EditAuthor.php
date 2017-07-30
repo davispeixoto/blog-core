@@ -9,58 +9,24 @@
 namespace DavisPeixoto\BlogCore\Service;
 
 
-use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
 use DavisPeixoto\BlogCore\Entity\Author;
-use Exception;
+use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
 use Psr\Log\LoggerInterface;
-use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class EditAuthor
  * @package DavisPeixoto\BlogCore\Service
  */
-class EditAuthor implements ServiceInterface
+class EditAuthor extends AbstractSaveService
 {
     /**
-     * @var AbstractAuthorRepository
-     */
-    private $authorRepository;
-
-    /**
-     * @var Author
-     */
-    private $author;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
      * EditAuthor constructor.
-     * @param AbstractAuthorRepository $authorRepository
-     * @param Author $author
+     * @param AbstractAuthorRepository $repository
+     * @param Author $entity
      * @param LoggerInterface $logger
      */
-    public function __construct(AbstractAuthorRepository $authorRepository, Author $author, LoggerInterface $logger)
+    public function __construct(AbstractAuthorRepository $repository, Author $entity, LoggerInterface $logger)
     {
-        $this->authorRepository = $authorRepository;
-        $this->author = $author;
-        $this->logger = $logger;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function run()
-    {
-        try {
-            return $this->authorRepository->save($this->author);
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage());
-        }
-
-        return null;
+        parent::__construct($repository, $entity, $logger);
     }
 }

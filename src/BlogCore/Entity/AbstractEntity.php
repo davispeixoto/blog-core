@@ -16,6 +16,8 @@ use stdClass;
 
 class AbstractEntity extends stdClass
 {
+    const UUID_TYPE_RANDOM = 4;
+
     /**
      * @var UuidInterface
      */
@@ -63,7 +65,7 @@ class AbstractEntity extends stdClass
      */
     private function isVersionValid(UuidInterface $uuid)
     {
-        if ($uuid->getVersion() !== UUID_TYPE_RANDOM) {
+        if ($uuid->getVersion() !== self::UUID_TYPE_RANDOM) {
             throw new InvalidUuidStringException('Not supported version: '.$uuid->getVersion());
         }
 

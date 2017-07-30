@@ -9,58 +9,24 @@
 namespace DavisPeixoto\BlogCore\Service;
 
 
-use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\AbstractPostRepository;
 use DavisPeixoto\BlogCore\Entity\Post;
-use Exception;
+use DavisPeixoto\BlogCore\Repository\AbstractPostRepository;
 use Psr\Log\LoggerInterface;
-use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class CreatePost
  * @package DavisPeixoto\BlogCore\Service
  */
-class CreatePost implements ServiceInterface
+class CreatePost extends AbstractSaveService
 {
     /**
-     * @var AbstractPostRepository
-     */
-    private $postRepository;
-
-    /**
-     * @var Post
-     */
-    private $post;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
      * CreatePost constructor.
-     * @param AbstractPostRepository $postRepository
-     * @param Post $post
+     * @param AbstractPostRepository $repository
+     * @param Post $entity
      * @param LoggerInterface $logger
      */
-    public function __construct(AbstractPostRepository $postRepository, Post $post, LoggerInterface $logger)
+    public function __construct(AbstractPostRepository $repository, Post $entity, LoggerInterface $logger)
     {
-        $this->postRepository = $postRepository;
-        $this->post = $post;
-        $this->logger = $logger;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function run()
-    {
-        try {
-            return $this->postRepository->save($this->post);
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage());
-        }
-
-        return null;
+        parent::__construct($repository, $entity, $logger);
     }
 }
