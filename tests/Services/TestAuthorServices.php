@@ -8,19 +8,19 @@
 
 namespace DavisPeixoto\BlogCore\Tests\Services;
 
-use PHPUnit\Framework\TestCase;
+use DateTime;
 use DavisPeixoto\BlogCore\Entity\Author;
+use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
 use DavisPeixoto\BlogCore\Service\CreateAuthor;
-use DavisPeixoto\BlogCore\Service\EditAuthor;
 use DavisPeixoto\BlogCore\Service\DeleteAuthor;
+use DavisPeixoto\BlogCore\Service\EditAuthor;
 use DavisPeixoto\BlogCore\Service\GetAuthor;
 use DavisPeixoto\BlogCore\Service\ListAuthors;
-use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
+use Exception;
+use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use Psr\Log\LoggerInterface;
-use DateTime;
-use Exception;
 
 class TestAuthorServices extends TestCase
 {
@@ -53,8 +53,8 @@ class TestAuthorServices extends TestCase
     {
         $this->logger = $this->createMock(LoggerInterface::class);
         $this->authorRepository = $this->getMockForAbstractClass(AbstractAuthorRepository::class);
-        $this->uuid = Uuid::uuid4();
-        $this->author = new Author($this->uuid, 'Davis', 'email@example.org', 'Some string', new DateTime());
+        $this->uuid = Uuid::uuid4()->toString();
+        $this->author = new Author('Davis', 'email@example.org', 'Some string', $this->uuid, new DateTime());
         $this->filters = [];
     }
 
@@ -122,14 +122,14 @@ class TestAuthorServices extends TestCase
         $this->logger->expects($this->once())->method('error');
         $this->authorRepository->expects($this->once())->method('get')->will($this->throwException(new Exception()));
         $service = new GetAuthor($this->authorRepository, $this->uuid, $this->logger);
-        $this->assertEquals(false, $service->run(), 'Exception');
+        $this->assertEquals(null, $service->run(), 'Exception');
     }
 
     public function testGetAuthorServiceReturningFalse()
     {
         $this->authorRepository->expects($this->once())->method('get')->will($this->returnValue(false));
         $service = new GetAuthor($this->authorRepository, $this->uuid, $this->logger);
-        $this->assertEquals(false, $service->run(), 'False');
+        $this->assertEquals(null, $service->run(), 'False');
     }
 
     public function testGetAuthorsListService()

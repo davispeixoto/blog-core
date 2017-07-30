@@ -8,20 +8,20 @@
 
 namespace DavisPeixoto\BlogCore\Tests\Services;
 
+use DateTime;
 use DavisPeixoto\BlogCore\Entity\Author;
-use PHPUnit\Framework\TestCase;
 use DavisPeixoto\BlogCore\Entity\Post;
+use DavisPeixoto\BlogCore\Repository\AbstractPostRepository;
 use DavisPeixoto\BlogCore\Service\CreatePost;
-use DavisPeixoto\BlogCore\Service\EditPost;
 use DavisPeixoto\BlogCore\Service\DeletePost;
+use DavisPeixoto\BlogCore\Service\EditPost;
 use DavisPeixoto\BlogCore\Service\GetPost;
 use DavisPeixoto\BlogCore\Service\ListPosts;
-use DavisPeixoto\BlogCore\Repository\AbstractPostRepository;
+use Exception;
+use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use Psr\Log\LoggerInterface;
-use DateTime;
-use Exception;
 
 class TestPostServices extends TestCase
 {
@@ -64,10 +64,10 @@ class TestPostServices extends TestCase
     {
         $this->logger = $this->createMock(LoggerInterface::class);
         $this->postRepository = $this->getMockForAbstractClass(AbstractPostRepository::class);
-        $this->uuid = Uuid::uuid4();
-        $this->authorUuid = Uuid::uuid4();
-        $this->author = new Author($this->authorUuid, 'Davis', 'email@example.org', 'Some string', new DateTime());
-        $this->post = new Post($this->uuid, 'A Post', 'Lorem ipsum', $this->author, [], null);
+        $this->uuid = Uuid::uuid4()->toString();
+        $this->authorUuid = null;
+        $this->author = new Author('Davis', 'email@example.org', 'Some string', $this->authorUuid, new DateTime());
+        $this->post = new Post('A Post', 'Lorem ipsum', $this->author, $this->uuid, [], null);
         $this->filters = [];
     }
 

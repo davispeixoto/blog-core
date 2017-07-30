@@ -9,8 +9,8 @@
 namespace DavisPeixoto\BlogCore\Tests\Entity;
 
 use DateTime;
-use DavisPeixoto\BlogCore\Entity\Post;
 use DavisPeixoto\BlogCore\Entity\Author;
+use DavisPeixoto\BlogCore\Entity\Post;
 use DavisPeixoto\BlogCore\Entity\Trail;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
@@ -34,9 +34,11 @@ class TestTrail extends TestCase
 
     public function setUp()
     {
-        $this->post1 = new Post(Uuid::uuid4(), 'Post 1', 'Lorem ipsum', new Author(Uuid::uuid4(), 'Davis', 'email@example.org', 'Some string', new DateTime()), [], null);
-        $this->post2 = new Post(Uuid::uuid4(), 'Post 2', 'Lorem ipsum', new Author(Uuid::uuid4(), 'John Doe', 'email@example.org', 'Some string', new DateTime()), [], null);
-        $this->trail = new Trail(Uuid::uuid4(), 'A Trail', 'Lorem ipsum sit dolor amet', []);
+        $this->post1 = new Post('Post 1', 'Lorem ipsum', new Author('Davis', 'email@example.org',
+            'Some string', null, new DateTime()), null, [], null);
+        $this->post2 = new Post('Post 2', 'Lorem ipsum', new Author('John Doe', 'email@example.org',
+            'Some string', Uuid::uuid4()->toString(), new DateTime()), null, [], null);
+        $this->trail = new Trail('A Trail', 'Lorem ipsum sit dolor amet', null, []);
     }
 
     /**
@@ -50,7 +52,7 @@ class TestTrail extends TestCase
      */
     public function testConstructor($uuid, $name, $description, $posts, $expected, $message)
     {
-        $post = new Trail($uuid, $name, $description, $posts);
+        $post = new Trail($name, $description, $uuid, $posts);
         $this->assertInstanceOf($expected, $post, $message);
     }
 
@@ -85,26 +87,46 @@ class TestTrail extends TestCase
     public function trailConstructor()
     {
         $this->setUp();
+
         return [
-            [Uuid::uuid4(), 'A Trail', 'Lorem ipsum sit dolor amet', [], Trail::class, 'no posts'],
-            [Uuid::uuid4(), 'A Trail', 'Lorem ipsum sit dolor amet', [$this->post1], Trail::class, 'one post'],
-            [Uuid::uuid4(), 'A Trail', 'Lorem ipsum sit dolor amet', [$this->post1, $this->post2], Trail::class, 'more posts'],
+            ['', 'A Trail', 'Lorem ipsum sit dolor amet', [], Trail::class, 'no posts'],
+            [null, 'A Trail', 'Lorem ipsum sit dolor amet', [$this->post1], Trail::class, 'one post'],
+            [
+                Uuid::uuid4()->toString(),
+                'A Trail',
+                'Lorem ipsum sit dolor amet',
+                [$this->post1, $this->post2],
+                Trail::class,
+                'more posts',
+            ],
         ];
     }
 
     public function addPostProvider()
     {
         $this->setUp();
+
         return [
             [[], $this->post1, [$this->post1], 'positive test, on null, first post added'],
-            [[$this->post1], $this->post2, [$this->post1, $this->post2], 'positive test, adding a new post to existing posts vector'],
-            [[$this->post1, $this->post2], $this->post1, [$this->post1, $this->post2], 'negative test, posts should not be duplicated']
+            [
+                [$this->post1],
+                $this->post2,
+                [$this->post1, $this->post2],
+                'positive test, adding a new post to existing posts vector',
+            ],
+            [
+                [$this->post1, $this->post2],
+                $this->post1,
+                [$this->post1, $this->post2],
+                'negative test, posts should not be duplicated',
+            ],
         ];
     }
 
     public function removePostProvider()
     {
         $this->setUp();
+
         return [
             [[$this->post1], $this->post1, [], 'positive test, all tags removed'],
             [[$this->post1, $this->post2], $this->post1, [$this->post2], 'positive test, removing one tag'],

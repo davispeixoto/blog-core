@@ -10,20 +10,14 @@ namespace DavisPeixoto\BlogCore\Entity;
 
 
 use DateTime;
-use Ramsey\Uuid\UuidInterface;
-use stdClass;
+use Ramsey\Uuid\Exception\InvalidUuidStringException;
 
 /**
  * Class Post
  * @package DavisPeixoto\BlogCore\Entity
  */
-class Post extends stdClass
+class Post extends AbstractEntity
 {
-    /**
-     * @var UuidInterface
-     */
-    private $postId;
-
     /**
      * @var string $title
      */
@@ -42,7 +36,7 @@ class Post extends stdClass
     /**
      * @var Author
      */
-    private $authorId;
+    private $author;
 
     /**
      * @var Tag[]
@@ -51,45 +45,28 @@ class Post extends stdClass
 
     /**
      * Post constructor.
-     * @param UuidInterface $postId
      * @param string $title
      * @param string $body
      * @param Author $authorId
+     * @param string|null $id
      * @param Tag[] $tags
      * @param DateTime|null $publishDate
+     * @throws InvalidUuidStringException
      */
     public function __construct(
-        UuidInterface $postId,
         $title,
         $body,
         Author $authorId,
+        string $id = null,
         array $tags = [],
         DateTime $publishDate = null
     ) {
-        $this->postId = $postId;
-        $this->title = $title;
-        $this->body = $body;
-        $this->publishDate = $publishDate;
-        $this->authorId = $authorId;
-        $this->tags = $tags;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     * @return UuidInterface
-     */
-    public function getPostId(): UuidInterface
-    {
-        return $this->postId;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     * @param UuidInterface $postId
-     */
-    public function setPostId(UuidInterface $postId)
-    {
-        $this->postId = $postId;
+        $this->setId($id);
+        $this->setTitle($title);
+        $this->setBody($body);
+        $this->setPublishDate($publishDate);
+        $this->setAuthor($authorId);
+        $this->setTags($tags);
     }
 
     /**
@@ -148,18 +125,18 @@ class Post extends stdClass
      * @codeCoverageIgnore
      * @return Author
      */
-    public function getAuthorId(): Author
+    public function getAuthor(): Author
     {
-        return $this->authorId;
+        return $this->author;
     }
 
     /**
      * @codeCoverageIgnore
-     * @param Author $authorId
+     * @param Author $author
      */
-    public function setAuthorId(Author $authorId)
+    public function setAuthor(Author $author)
     {
-        $this->authorId = $authorId;
+        $this->author = $author;
     }
 
     /**
@@ -198,7 +175,7 @@ class Post extends stdClass
     public function removeTag(Tag $tag)
     {
         foreach ($this->getTags() as $key => $value) {
-            if ($value->getTagId() === $tag->getTagId()) {
+            if ($value->getId() === $tag->getId()) {
                 unset($this->tags[$key]);
                 sort($this->tags);
 

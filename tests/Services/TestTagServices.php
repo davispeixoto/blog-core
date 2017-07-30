@@ -8,19 +8,18 @@
 
 namespace DavisPeixoto\BlogCore\Tests\Services;
 
-use PHPUnit\Framework\TestCase;
 use DavisPeixoto\BlogCore\Entity\Tag;
+use DavisPeixoto\BlogCore\Repository\AbstractTagRepository;
 use DavisPeixoto\BlogCore\Service\CreateTag;
-use DavisPeixoto\BlogCore\Service\EditTag;
 use DavisPeixoto\BlogCore\Service\DeleteTag;
+use DavisPeixoto\BlogCore\Service\EditTag;
 use DavisPeixoto\BlogCore\Service\GetTag;
 use DavisPeixoto\BlogCore\Service\ListTags;
-use DavisPeixoto\BlogCore\Repository\AbstractTagRepository;
+use Exception;
+use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use Psr\Log\LoggerInterface;
-use DateTime;
-use Exception;
 
 class TestTagServices extends TestCase
 {
@@ -53,8 +52,8 @@ class TestTagServices extends TestCase
     {
         $this->logger = $this->createMock(LoggerInterface::class);
         $this->tagRepository = $this->getMockForAbstractClass(AbstractTagRepository::class);
-        $this->uuid = Uuid::uuid4();
-        $this->tag = new Tag($this->uuid, 'Tag 1');
+        $this->uuid = Uuid::uuid4()->toString();
+        $this->tag = new Tag('Tag 1', $this->uuid);
         $this->filters = [];
     }
 

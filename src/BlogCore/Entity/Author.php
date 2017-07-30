@@ -10,20 +10,14 @@ namespace DavisPeixoto\BlogCore\Entity;
 
 
 use DateTime;
-use Ramsey\Uuid\UuidInterface;
-use stdClass;
+use Ramsey\Uuid\Exception\InvalidUuidStringException;
 
 /**
  * Class Author
  * @package DavisPeixoto\BlogCore\Entity
  */
-class Author extends stdClass
+class Author extends AbstractEntity
 {
-    /**
-     * @var UuidInterface
-     */
-    private $authorId;
-
     /**
      * @var string
      */
@@ -46,37 +40,20 @@ class Author extends stdClass
 
     /**
      * Author constructor.
-     * @param UuidInterface $authorId
      * @param string $name
      * @param string $email
      * @param string $bio
+     * @param string|null $id
      * @param DateTime|null $birthdate
+     * @throws InvalidUuidStringException
      */
-    public function __construct(UuidInterface $authorId, $name, $email, $bio, DateTime $birthdate = null)
+    public function __construct($name, $email, $bio, $id = null, DateTime $birthdate = null)
     {
-        $this->authorId = $authorId;
-        $this->name = $name;
-        $this->email = $email;
-        $this->bio = $bio;
-        $this->birthdate = $birthdate;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     * @return UuidInterface
-     */
-    public function getAuthorId(): UuidInterface
-    {
-        return $this->authorId;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     * @param UuidInterface $authorId
-     */
-    public function setAuthorId(UuidInterface $authorId)
-    {
-        $this->authorId = $authorId;
+        $this->setId($id);
+        $this->setName($name);
+        $this->setEmail($email);
+        $this->setBio($bio);
+        $this->setBirthdate($birthdate);
     }
 
     /**

@@ -8,21 +8,14 @@
 
 namespace DavisPeixoto\BlogCore\Entity;
 
-
-use Ramsey\Uuid\UuidInterface;
-use stdClass;
+use Ramsey\Uuid\Exception\InvalidUuidStringException;
 
 /**
  * Class Trail
  * @package DavisPeixoto\BlogCore\Entity
  */
-class Trail extends stdClass
+class Trail extends AbstractEntity
 {
-    /**
-     * @var UuidInterface
-     */
-    private $trailId;
-
     /**
      * @var string
      */
@@ -40,35 +33,18 @@ class Trail extends stdClass
 
     /**
      * Trail constructor.
-     * @param UuidInterface $trailId
      * @param string $name
      * @param string $description
+     * @param string|null $id
      * @param Post[] $posts
+     * @throws InvalidUuidStringException
      */
-    public function __construct(UuidInterface $trailId, $name, $description, array $posts = [])
+    public function __construct($name, $description, string $id = null, array $posts = [])
     {
-        $this->trailId = $trailId;
-        $this->name = $name;
-        $this->description = $description;
-        $this->posts = $posts;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     * @return UuidInterface
-     */
-    public function getTrailId(): UuidInterface
-    {
-        return $this->trailId;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     * @param UuidInterface $trailId
-     */
-    public function setTrailId(UuidInterface $trailId)
-    {
-        $this->trailId = $trailId;
+        $this->setId($id);
+        $this->setName($name);
+        $this->setDescription($description);
+        $this->setPosts($posts);
     }
 
     /**
@@ -143,7 +119,7 @@ class Trail extends stdClass
     public function removePost(Post $post)
     {
         foreach ($this->getPosts() as $key => $value) {
-            if ($value->getPostId() === $post->getPostId()) {
+            if ($value->getId() === $post->getId()) {
                 unset($this->posts[$key]);
                 sort($this->posts);
 
