@@ -51,7 +51,7 @@ class CreatePost implements ServiceInterface
     }
 
     /**
-     * @return UuidInterface|null
+     * @return string|null
      */
     public function run()
     {
