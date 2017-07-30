@@ -75,10 +75,10 @@ class TestTrailServices extends TestCase
     {
         $this->logger = $this->createMock(LoggerInterface::class);
         $this->trailRepository = $this->getMockForAbstractClass(AbstractTrailRepository::class);
-        $this->authorUuid = Uuid::uuid4();
+        $this->authorUuid = null;
         $this->author = new Author('Davis', 'email@example.org', 'Some string', $this->authorUuid, new DateTime());
-        $this->postUuid = Uuid::uuid4();
-        $this->uuid = Uuid::uuid4();
+        $this->postUuid = null;
+        $this->uuid = Uuid::uuid4()->toString();
         $this->post = new Post('A Post', 'Lorem ipsum', $this->author, $this->postUuid, [], null);
         $this->trail = new Trail('A trail', 'An amazing trail', $this->uuid, [$this->post]);
         $this->filters = [];

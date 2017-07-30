@@ -53,7 +53,7 @@ class TestAuthorServices extends TestCase
     {
         $this->logger = $this->createMock(LoggerInterface::class);
         $this->authorRepository = $this->getMockForAbstractClass(AbstractAuthorRepository::class);
-        $this->uuid = Uuid::uuid4();
+        $this->uuid = Uuid::uuid4()->toString();
         $this->author = new Author('Davis', 'email@example.org', 'Some string', $this->uuid, new DateTime());
         $this->filters = [];
     }
@@ -122,14 +122,14 @@ class TestAuthorServices extends TestCase
         $this->logger->expects($this->once())->method('error');
         $this->authorRepository->expects($this->once())->method('get')->will($this->throwException(new Exception()));
         $service = new GetAuthor($this->authorRepository, $this->uuid, $this->logger);
-        $this->assertEquals(false, $service->run(), 'Exception');
+        $this->assertEquals(null, $service->run(), 'Exception');
     }
 
     public function testGetAuthorServiceReturningFalse()
     {
         $this->authorRepository->expects($this->once())->method('get')->will($this->returnValue(false));
         $service = new GetAuthor($this->authorRepository, $this->uuid, $this->logger);
-        $this->assertEquals(false, $service->run(), 'False');
+        $this->assertEquals(null, $service->run(), 'False');
     }
 
     public function testGetAuthorsListService()

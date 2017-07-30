@@ -25,7 +25,7 @@ class TestPost extends TestCase
     public function setUp()
     {
         $this->post = new Post('A Post', 'Lorem ipsum', new Author('Davis', 'email@example.org',
-            'Some string', Uuid::uuid4(), new DateTime()), Uuid::uuid4(), [], null);
+            'Some string', null, new DateTime()), null, [], null);
     }
 
     /**
@@ -89,45 +89,45 @@ class TestPost extends TestCase
     {
         return [
             [
-                Uuid::uuid4(),
+                null,
                 'A Post',
                 'Lorem ipsum',
                 new Author('Davis', 'email@example.org', 'Some string',
-                    Uuid::uuid4(), new DateTime()),
+                    null, new DateTime()),
                 [],
                 null,
                 Post::class,
                 'no tags, no publish date',
             ],
             [
-                Uuid::uuid4(),
+                Uuid::uuid4()->toString(),
                 'A Post',
                 'Lorem ipsum',
                 new Author('Davis', 'email@example.org', 'Some string',
-                    Uuid::uuid4(), new DateTime()),
-                [new Tag('tag1', Uuid::uuid4()), new Tag('tag2', Uuid::uuid4())],
+                    null, new DateTime()),
+                [new Tag('tag1', null), new Tag('tag2', null)],
                 null,
                 Post::class,
                 'have tags, unpublished',
             ],
             [
-                Uuid::uuid4(),
+                null,
                 'A Post',
                 'Lorem ipsum',
                 new Author('Davis', 'email@example.org', 'Some string',
-                    Uuid::uuid4(), new DateTime()),
+                    null, new DateTime()),
                 [],
                 new DateTime(),
                 Post::class,
                 'no tags, published',
             ],
             [
-                Uuid::uuid4(),
+                '',
                 'A Post',
                 'Lorem ipsum',
                 new Author('Davis', 'email@example.org', 'Some string',
-                    Uuid::uuid4(), new DateTime()),
-                [new Tag('tag1', Uuid::uuid4()), new Tag('tag2', Uuid::uuid4())],
+                    null, new DateTime()),
+                [new Tag('tag1', null), new Tag('tag2', null)],
                 new DateTime(),
                 Post::class,
                 'tags, published (most common scenario)',

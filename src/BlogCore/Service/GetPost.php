@@ -11,9 +11,8 @@ namespace DavisPeixoto\BlogCore\Service;
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
 use DavisPeixoto\BlogCore\Repository\AbstractPostRepository;
-use Psr\Log\LoggerInterface;
 use Exception;
-use Ramsey\Uuid\UuidInterface;
+use Psr\Log\LoggerInterface;
 use stdClass;
 
 /**
@@ -28,7 +27,7 @@ class GetPost implements ServiceInterface
     private $postRepository;
 
     /**
-     * @var UuidInterface
+     * @var string
      */
     private $uuid;
 
@@ -40,10 +39,10 @@ class GetPost implements ServiceInterface
     /**
      * GetPost constructor.
      * @param AbstractPostRepository $postRepository
-     * @param UuidInterface $uuid
+     * @param string $uuid
      * @param LoggerInterface $logger
      */
-    public function __construct(AbstractPostRepository $postRepository, UuidInterface $uuid, LoggerInterface $logger)
+    public function __construct(AbstractPostRepository $postRepository, string $uuid, LoggerInterface $logger)
     {
         $this->postRepository = $postRepository;
         $this->uuid = $uuid;
@@ -51,7 +50,7 @@ class GetPost implements ServiceInterface
     }
 
     /**
-     * @return stdClass|false
+     * @return stdClass|null
      */
     public function run()
     {
@@ -61,6 +60,6 @@ class GetPost implements ServiceInterface
             $this->logger->error($e->getMessage());
         }
 
-        return false;
+        return null;
     }
 }

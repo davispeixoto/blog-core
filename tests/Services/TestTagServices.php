@@ -52,7 +52,7 @@ class TestTagServices extends TestCase
     {
         $this->logger = $this->createMock(LoggerInterface::class);
         $this->tagRepository = $this->getMockForAbstractClass(AbstractTagRepository::class);
-        $this->uuid = Uuid::uuid4();
+        $this->uuid = Uuid::uuid4()->toString();
         $this->tag = new Tag('Tag 1', $this->uuid);
         $this->filters = [];
     }

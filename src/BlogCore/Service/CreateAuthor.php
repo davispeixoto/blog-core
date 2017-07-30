@@ -9,12 +9,11 @@
 namespace DavisPeixoto\BlogCore\Service;
 
 
+use DavisPeixoto\BlogCore\Entity\Author;
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
 use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
-use DavisPeixoto\BlogCore\Entity\Author;
 use Exception;
 use Psr\Log\LoggerInterface;
-use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class CreateAuthor
@@ -51,7 +50,7 @@ class CreateAuthor implements ServiceInterface
     }
 
     /**
-     * @return UuidInterface|null
+     * @return string|null
      */
     public function run()
     {

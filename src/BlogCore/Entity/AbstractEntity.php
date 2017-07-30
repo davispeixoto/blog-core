@@ -34,7 +34,7 @@ class AbstractEntity extends stdClass
      * @return $this
      * @throws InvalidUuidStringException
      */
-    public function setId($id = null)
+    public function setId(string $id = null)
     {
         $uuid = null;
         if ($id === null || $id === '') {
@@ -43,16 +43,14 @@ class AbstractEntity extends stdClass
             if (Uuid::isValid($id)) {
                 $uuid = Uuid::fromString($id);
             } else {
-                throw new InvalidUuidStringException();
+                throw new InvalidUuidStringException('Invalid string');
             }
         }
 
         if ($uuid->getVersion() !== Uuid::uuid4()->getVersion()) {
-            throw new InvalidUuidStringException();
+            throw new InvalidUuidStringException('Not supported version: '.$uuid->getVersion());
         }
 
         $this->id = $uuid;
-
-        return $this;
     }
 }

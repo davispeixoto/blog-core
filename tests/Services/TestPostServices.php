@@ -64,8 +64,8 @@ class TestPostServices extends TestCase
     {
         $this->logger = $this->createMock(LoggerInterface::class);
         $this->postRepository = $this->getMockForAbstractClass(AbstractPostRepository::class);
-        $this->uuid = Uuid::uuid4();
-        $this->authorUuid = Uuid::uuid4();
+        $this->uuid = Uuid::uuid4()->toString();
+        $this->authorUuid = null;
         $this->author = new Author('Davis', 'email@example.org', 'Some string', $this->authorUuid, new DateTime());
         $this->post = new Post('A Post', 'Lorem ipsum', $this->author, $this->uuid, [], null);
         $this->filters = [];

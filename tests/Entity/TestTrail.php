@@ -32,6 +32,15 @@ class TestTrail extends TestCase
      */
     private $post2;
 
+    public function setUp()
+    {
+        $this->post1 = new Post('Post 1', 'Lorem ipsum', new Author('Davis', 'email@example.org',
+            'Some string', null, new DateTime()), null, [], null);
+        $this->post2 = new Post('Post 2', 'Lorem ipsum', new Author('John Doe', 'email@example.org',
+            'Some string', Uuid::uuid4()->toString(), new DateTime()), null, [], null);
+        $this->trail = new Trail('A Trail', 'Lorem ipsum sit dolor amet', null, []);
+    }
+
     /**
      * @param $uuid
      * @param $name
@@ -80,10 +89,10 @@ class TestTrail extends TestCase
         $this->setUp();
 
         return [
-            [Uuid::uuid4(), 'A Trail', 'Lorem ipsum sit dolor amet', [], Trail::class, 'no posts'],
-            [Uuid::uuid4(), 'A Trail', 'Lorem ipsum sit dolor amet', [$this->post1], Trail::class, 'one post'],
+            ['', 'A Trail', 'Lorem ipsum sit dolor amet', [], Trail::class, 'no posts'],
+            [null, 'A Trail', 'Lorem ipsum sit dolor amet', [$this->post1], Trail::class, 'one post'],
             [
-                Uuid::uuid4(),
+                Uuid::uuid4()->toString(),
                 'A Trail',
                 'Lorem ipsum sit dolor amet',
                 [$this->post1, $this->post2],
@@ -91,15 +100,6 @@ class TestTrail extends TestCase
                 'more posts',
             ],
         ];
-    }
-
-    public function setUp()
-    {
-        $this->post1 = new Post('Post 1', 'Lorem ipsum', new Author('Davis', 'email@example.org',
-            'Some string', Uuid::uuid4(), new DateTime()), Uuid::uuid4(), [], null);
-        $this->post2 = new Post('Post 2', 'Lorem ipsum', new Author('John Doe', 'email@example.org',
-            'Some string', Uuid::uuid4(), new DateTime()), Uuid::uuid4(), [], null);
-        $this->trail = new Trail('A Trail', 'Lorem ipsum sit dolor amet', Uuid::uuid4(), []);
     }
 
     public function addPostProvider()

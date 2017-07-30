@@ -11,9 +11,8 @@ namespace DavisPeixoto\BlogCore\Service;
 
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
 use DavisPeixoto\BlogCore\Repository\AbstractTrailRepository;
-use Psr\Log\LoggerInterface;
 use Exception;
-use Ramsey\Uuid\UuidInterface;
+use Psr\Log\LoggerInterface;
 use stdClass;
 
 /**
@@ -28,7 +27,7 @@ class GetTrail implements ServiceInterface
     private $trailRepository;
 
     /**
-     * @var UuidInterface
+     * @var string
      */
     private $uuid;
 
@@ -40,10 +39,10 @@ class GetTrail implements ServiceInterface
     /**
      * GetTrail constructor.
      * @param AbstractTrailRepository $trailRepository
-     * @param UuidInterface $uuid
+     * @param string $uuid
      * @param LoggerInterface $logger
      */
-    public function __construct(AbstractTrailRepository $trailRepository, UuidInterface $uuid, LoggerInterface $logger)
+    public function __construct(AbstractTrailRepository $trailRepository, string $uuid, LoggerInterface $logger)
     {
         $this->trailRepository = $trailRepository;
         $this->uuid = $uuid;
@@ -51,7 +50,7 @@ class GetTrail implements ServiceInterface
     }
 
     /**
-     * @return stdClass|false
+     * @return stdClass|null
      */
     public function run()
     {
@@ -61,6 +60,6 @@ class GetTrail implements ServiceInterface
             $this->logger->error($e->getMessage());
         }
 
-        return false;
+        return null;
     }
 }
