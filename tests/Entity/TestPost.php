@@ -18,7 +18,7 @@ use Ramsey\Uuid\Uuid;
 class TestPost extends TestCase
 {
     /**
-     * @Post $post
+     * @var Post $post
      */
     private $post;
 
@@ -29,14 +29,14 @@ class TestPost extends TestCase
     }
 
     /**
-     * @param $uuid
-     * @param $title
-     * @param $body
-     * @param $author
-     * @param $tags
-     * @param $publishDate
-     * @param $expected
-     * @param $message
+     * @param string|null $uuid
+     * @param string $title
+     * @param string $body
+     * @param Author $author
+     * @param Tag[] $tags
+     * @param DateTime|null $publishDate
+     * @param string $expected
+     * @param string $message
      * @dataProvider postConstructor
      */
     public function testConstructor($uuid, $title, $body, $author, $tags, $publishDate, $expected, $message)
@@ -46,9 +46,9 @@ class TestPost extends TestCase
     }
 
     /**
-     * @param $date
-     * @param $expected
-     * @param $message
+     * @param DateTime|null $date
+     * @param string $expected
+     * @param string $message
      * @dataProvider publishDateProvider
      */
     public function testPublishDates($date, $expected, $message)
@@ -58,10 +58,10 @@ class TestPost extends TestCase
     }
 
     /**
-     * @param $tags
-     * @param $tag
-     * @param $expected
-     * @param $message
+     * @param Tag[] $tags
+     * @param Tag $tag
+     * @param string $expected
+     * @param string $message
      * @dataProvider addTagProvider
      */
     public function testAddTag($tags, $tag, $expected, $message)
@@ -72,10 +72,10 @@ class TestPost extends TestCase
     }
 
     /**
-     * @param $tags
-     * @param $tag
-     * @param $expected
-     * @param $message
+     * @param Tag[] $tags
+     * @param Tag $tag
+     * @param string $expected
+     * @param string $message
      * @dataProvider removeTagProvider
      */
     public function testRemoveTag($tags, $tag, $expected, $message)

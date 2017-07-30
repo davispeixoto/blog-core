@@ -10,6 +10,7 @@ namespace DavisPeixoto\BlogCore\Tests\Services;
 
 use DateTime;
 use DavisPeixoto\BlogCore\Entity\Author;
+use DavisPeixoto\BlogCore\Interfaces\RepositoryInterface;
 use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
 use DavisPeixoto\BlogCore\Service\CreateAuthor;
 use DavisPeixoto\BlogCore\Service\DeleteAuthor;
@@ -25,17 +26,17 @@ use Ramsey\Uuid\UuidInterface;
 class TestAuthorServices extends TestCase
 {
     /**
-     * @LoggerInterface
+     * @var LoggerInterface
      */
     private $logger;
 
     /**
-     * @RepositoryInterface
+     * @var RepositoryInterface
      */
     private $authorRepository;
 
     /**
-     * @UuidInterface
+     * @var UuidInterface
      */
     private $uuid;
 

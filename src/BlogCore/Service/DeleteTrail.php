@@ -9,10 +9,8 @@
 namespace DavisPeixoto\BlogCore\Service;
 
 
-use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\AbstractTrailRepository;
 use DavisPeixoto\BlogCore\Entity\Trail;
-use Exception;
+use DavisPeixoto\BlogCore\Repository\AbstractTrailRepository;
 use Psr\Log\LoggerInterface;
 
 
@@ -20,47 +18,16 @@ use Psr\Log\LoggerInterface;
  * Class DeleteTrail
  * @package DavisPeixoto\BlogCore\Service
  */
-class DeleteTrail implements ServiceInterface
+class DeleteTrail extends AbstractDeleteService
 {
     /**
-     * @var AbstractTrailRepository
-     */
-    private $trailRepository;
-
-    /**
-     * @var Trail
-     */
-    private $trail;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
      * DeleteTrail constructor.
-     * @param AbstractTrailRepository $trailRepository
-     * @param Trail $trail
+     * @param AbstractTrailRepository $repository
+     * @param Trail $entity
      * @param LoggerInterface $logger
      */
-    public function __construct(AbstractTrailRepository $trailRepository, Trail $trail, LoggerInterface $logger)
+    public function __construct(AbstractTrailRepository $repository, Trail $entity, LoggerInterface $logger)
     {
-        $this->trailRepository = $trailRepository;
-        $this->trail = $trail;
-        $this->logger = $logger;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function run(): bool
-    {
-        try {
-            return $this->trailRepository->delete($this->trail);
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage());
-        }
-
-        return false;
+        parent::__construct($repository, $entity, $logger);
     }
 }

@@ -10,9 +10,7 @@ namespace DavisPeixoto\BlogCore\Service;
 
 
 use DavisPeixoto\BlogCore\Entity\Tag;
-use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
 use DavisPeixoto\BlogCore\Repository\AbstractTagRepository;
-use Exception;
 use Psr\Log\LoggerInterface;
 
 
@@ -20,47 +18,16 @@ use Psr\Log\LoggerInterface;
  * Class DeleteTag
  * @package DavisPeixoto\BlogCore\Service
  */
-class DeleteTag implements ServiceInterface
+class DeleteTag extends AbstractDeleteService
 {
     /**
-     * @var AbstractTagRepository
-     */
-    private $tagRepository;
-
-    /**
-     * @var Tag
-     */
-    private $tag;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
      * DeleteTag constructor.
-     * @param AbstractTagRepository $tagRepository
-     * @param Tag $tag
+     * @param AbstractTagRepository $repository
+     * @param Tag $entity
      * @param LoggerInterface $logger
      */
-    public function __construct(AbstractTagRepository $tagRepository, Tag $tag, LoggerInterface $logger)
+    public function __construct(AbstractTagRepository $repository, Tag $entity, LoggerInterface $logger)
     {
-        $this->tagRepository = $tagRepository;
-        $this->tag = $tag;
-        $this->logger = $logger;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function run(): bool
-    {
-        try {
-            return $this->tagRepository->delete($this->tag);
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage());
-        }
-
-        return false;
+        parent::__construct($repository, $entity, $logger);
     }
 }

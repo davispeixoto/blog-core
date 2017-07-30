@@ -9,57 +9,23 @@
 namespace DavisPeixoto\BlogCore\Service;
 
 
-use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
 use DavisPeixoto\BlogCore\Repository\AbstractTrailRepository;
 use Psr\Log\LoggerInterface;
-use Exception;
-use stdClass;
 
 /**
  * Class ListTrails
  * @package DavisPeixoto\BlogCore\Service
  */
-class ListTrails implements ServiceInterface
+class ListTrails extends AbstractListService
 {
     /**
-     * @var AbstractTrailRepository
-     */
-    private $trailRepository;
-
-    /**
-     * @var array
-     */
-    private $filters;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
      * ListTrails constructor.
-     * @param AbstractTrailRepository $trailRepository
+     * @param AbstractTrailRepository $repository
      * @param array $filters
      * @param LoggerInterface $logger
      */
-    public function __construct(AbstractTrailRepository $trailRepository, Array $filters, LoggerInterface $logger)
+    public function __construct(AbstractTrailRepository $repository, array $filters, LoggerInterface $logger)
     {
-        $this->trailRepository = $trailRepository;
-        $this->filters = $filters;
-        $this->logger = $logger;
-    }
-
-    /**
-     * @return array|stdClass[]
-     */
-    public function run(): array
-    {
-        try {
-            return $this->trailRepository->getList($this->filters);
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage());
-        }
-
-        return [];
+        parent::__construct($repository, $filters, $logger);
     }
 }

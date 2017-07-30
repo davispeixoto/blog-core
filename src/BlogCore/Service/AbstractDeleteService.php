@@ -13,22 +13,22 @@ use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
 use Exception;
 
 /**
- * Class AbstractSaveService
+ * Class AbstractDeleteService
  * @package DavisPeixoto\BlogCore\Service
  */
-abstract class AbstractSaveService extends AbstractWriteService implements ServiceInterface
+abstract class AbstractDeleteService extends AbstractWriteService implements ServiceInterface
 {
     /**
-     * @return string|null
+     * @return boolean
      */
-    public function run()
+    public function run(): bool
     {
         try {
-            return $this->repository->save($this->entity);
+            return $this->repository->delete($this->entity);
         } catch (Exception $e) {
             $this->logger->error($e->getMessage());
         }
 
-        return null;
+        return false;
     }
 }

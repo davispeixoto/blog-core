@@ -9,10 +9,8 @@
 namespace DavisPeixoto\BlogCore\Service;
 
 
-use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
 use DavisPeixoto\BlogCore\Entity\Author;
-use Exception;
+use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
 use Psr\Log\LoggerInterface;
 
 
@@ -20,47 +18,16 @@ use Psr\Log\LoggerInterface;
  * Class DeleteAuthor
  * @package DavisPeixoto\BlogCore\Service
  */
-class DeleteAuthor implements ServiceInterface
+class DeleteAuthor extends AbstractDeleteService
 {
     /**
-     * @var AbstractAuthorRepository
-     */
-    private $authorRepository;
-
-    /**
-     * @var Author
-     */
-    private $author;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
      * DeleteAuthor constructor.
-     * @param AbstractAuthorRepository $authorRepository
-     * @param Author $author
+     * @param AbstractAuthorRepository $repository
+     * @param Author $entity
      * @param LoggerInterface $logger
      */
-    public function __construct(AbstractAuthorRepository $authorRepository, Author $author, LoggerInterface $logger)
+    public function __construct(AbstractAuthorRepository $repository, Author $entity, LoggerInterface $logger)
     {
-        $this->authorRepository = $authorRepository;
-        $this->author = $author;
-        $this->logger = $logger;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function run(): bool
-    {
-        try {
-            return $this->authorRepository->delete($this->author);
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage());
-        }
-
-        return false;
+        parent::__construct($repository, $entity, $logger);
     }
 }

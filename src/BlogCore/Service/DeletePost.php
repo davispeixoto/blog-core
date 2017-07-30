@@ -9,10 +9,8 @@
 namespace DavisPeixoto\BlogCore\Service;
 
 
-use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
-use DavisPeixoto\BlogCore\Repository\AbstractPostRepository;
 use DavisPeixoto\BlogCore\Entity\Post;
-use Exception;
+use DavisPeixoto\BlogCore\Repository\AbstractPostRepository;
 use Psr\Log\LoggerInterface;
 
 
@@ -20,47 +18,16 @@ use Psr\Log\LoggerInterface;
  * Class DeletePost
  * @package DavisPeixoto\BlogCore\Service
  */
-class DeletePost implements ServiceInterface
+class DeletePost extends AbstractDeleteService
 {
     /**
-     * @var AbstractPostRepository
-     */
-    private $postRepository;
-
-    /**
-     * @var Post
-     */
-    private $post;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
      * DeletePost constructor.
-     * @param AbstractPostRepository $postRepository
-     * @param Post $post
+     * @param AbstractPostRepository $repository
+     * @param Post $entity
      * @param LoggerInterface $logger
      */
-    public function __construct(AbstractPostRepository $postRepository, Post $post, LoggerInterface $logger)
+    public function __construct(AbstractPostRepository $repository, Post $entity, LoggerInterface $logger)
     {
-        $this->postRepository = $postRepository;
-        $this->post = $post;
-        $this->logger = $logger;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function run(): bool
-    {
-        try {
-            return $this->postRepository->delete($this->post);
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage());
-        }
-
-        return false;
+        parent::__construct($repository, $entity, $logger);
     }
 }

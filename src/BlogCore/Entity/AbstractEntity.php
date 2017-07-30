@@ -49,7 +49,7 @@ class AbstractEntity extends stdClass
      * @return string
      * @throws InvalidUuidStringException
      */
-    private function isValidString(string $id)
+    private function isValidString(string $id): string
     {
         if (!Uuid::isValid($id)) {
             throw new InvalidUuidStringException('Invalid string');
@@ -63,7 +63,7 @@ class AbstractEntity extends stdClass
      * @return UuidInterface
      * @throws InvalidUuidStringException
      */
-    private function isVersionValid(UuidInterface $uuid)
+    private function isVersionValid(UuidInterface $uuid): UuidInterface
     {
         if ($uuid->getVersion() !== self::UUID_TYPE_RANDOM) {
             throw new InvalidUuidStringException('Not supported version: '.$uuid->getVersion());

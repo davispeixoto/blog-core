@@ -9,57 +9,23 @@
 namespace DavisPeixoto\BlogCore\Service;
 
 
-use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
 use DavisPeixoto\BlogCore\Repository\AbstractTagRepository;
-use Exception;
 use Psr\Log\LoggerInterface;
-use stdClass;
 
 /**
  * Class GetTag
  * @package DavisPeixoto\BlogCore\Service
  */
-class GetTag implements ServiceInterface
+class GetTag extends AbstractGetService
 {
     /**
-     * @var AbstractTagRepository
-     */
-    private $tagRepository;
-
-    /**
-     * @var string
-     */
-    private $uuid;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
      * GetTag constructor.
-     * @param AbstractTagRepository $tagRepository
+     * @param AbstractTagRepository $repository
      * @param string $uuid
      * @param LoggerInterface $logger
      */
-    public function __construct(AbstractTagRepository $tagRepository, string $uuid, LoggerInterface $logger)
+    public function __construct(AbstractTagRepository $repository, string $uuid, LoggerInterface $logger)
     {
-        $this->tagRepository = $tagRepository;
-        $this->uuid = $uuid;
-        $this->logger = $logger;
-    }
-
-    /**
-     * @return stdClass|null
-     */
-    public function run()
-    {
-        try {
-            return $this->tagRepository->get($this->uuid);
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage());
-        }
-
-        return null;
+        parent::__construct($repository, $uuid, $logger);
     }
 }
