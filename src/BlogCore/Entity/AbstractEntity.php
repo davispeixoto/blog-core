@@ -31,12 +31,10 @@ class AbstractEntity extends stdClass
 
     /**
      * @param string|null $id
-     * @return $this
      * @throws InvalidUuidStringException
      */
     public function setId(string $id = null)
     {
-        $uuid = null;
         if ($id === null || $id === '') {
             $uuid = Uuid::uuid4();
         } else {

@@ -25,9 +25,9 @@ interface RepositoryInterface
      *
      * @param stdClass $obj
      * @throws Exception
-     * @return string|null
+     * @return string
      */
-    public function save(stdClass $obj);
+    public function save(stdClass $obj): string;
 
     /**
      * Must receive the entity to be deleted
