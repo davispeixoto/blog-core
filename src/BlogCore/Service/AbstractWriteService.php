@@ -20,17 +20,17 @@ use Psr\Log\LoggerInterface;
 abstract class AbstractWriteService
 {
     /**
-     * @var RepositoryInterface
+     * @var RepositoryInterface $repository
      */
     protected $repository;
 
     /**
-     * @var AbstractEntity
+     * @var AbstractEntity $entity
      */
     protected $entity;
 
     /**
-     * @var LoggerInterface
+     * @var LoggerInterface $logger
      */
     protected $logger;
 

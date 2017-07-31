@@ -22,17 +22,17 @@ use stdClass;
 abstract class AbstractListService implements ServiceInterface
 {
     /**
-     * @var RepositoryInterface
+     * @var RepositoryInterface $repository
      */
     protected $repository;
 
     /**
-     * @var array
+     * @var array $filters
      */
     protected $filters;
 
     /**
-     * @var LoggerInterface
+     * @var LoggerInterface $logger
      */
     protected $logger;
 

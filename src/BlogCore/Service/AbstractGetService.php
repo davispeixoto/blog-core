@@ -22,17 +22,17 @@ use stdClass;
 abstract class AbstractGetService implements ServiceInterface
 {
     /**
-     * @var RepositoryInterface
+     * @var RepositoryInterface $repository
      */
     protected $repository;
 
     /**
-     * @var string
+     * @var string $uuid
      */
     protected $uuid;
 
     /**
-     * @var LoggerInterface
+     * @var LoggerInterface $logger
      */
     protected $logger;
 
