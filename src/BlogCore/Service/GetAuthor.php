@@ -9,60 +9,23 @@
 namespace DavisPeixoto\BlogCore\Service;
 
 
-use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
 use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
-use Exception;
 use Psr\Log\LoggerInterface;
-use stdClass;
 
 /**
  * Class GetAuthor
  * @package DavisPeixoto\BlogCore\Service
  */
-class GetAuthor implements ServiceInterface
+class GetAuthor extends AbstractGetService
 {
     /**
-     * @var AbstractAuthorRepository
-     */
-    private $authorRepository;
-
-    /**
-     * @var string
-     */
-    private $uuid;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
      * GetAuthor constructor.
-     * @param AbstractAuthorRepository $authorRepository
+     * @param AbstractAuthorRepository $repository
      * @param string $uuid
      * @param LoggerInterface $logger
      */
-    public function __construct(
-        AbstractAuthorRepository $authorRepository,
-        string $uuid,
-        LoggerInterface $logger
-    ) {
-        $this->uuid = $uuid;
-        $this->logger = $logger;
-        $this->authorRepository = $authorRepository;
-    }
-
-    /**
-     * @return stdClass|null
-     */
-    public function run()
+    public function __construct(AbstractAuthorRepository $repository, string $uuid, LoggerInterface $logger)
     {
-        try {
-            return $this->authorRepository->get($this->uuid);
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage());
-        }
-
-        return null;
+        parent::__construct($repository, $uuid, $logger);
     }
 }

@@ -18,17 +18,17 @@ use Ramsey\Uuid\Uuid;
 class TestTrail extends TestCase
 {
     /**
-     * @Trail $trail
+     * @var Trail $trail
      */
     private $trail;
 
     /**
-     * @Post $post1
+     * @var Post $post1
      */
     private $post1;
 
     /**
-     * @Post $post2
+     * @var Post $post2
      */
     private $post2;
 
@@ -42,12 +42,12 @@ class TestTrail extends TestCase
     }
 
     /**
-     * @param $uuid
-     * @param $name
-     * @param $description
-     * @param $posts
-     * @param $expected
-     * @param $message
+     * @param string|null $uuid
+     * @param string $name
+     * @param string $description
+     * @param Post[] $posts
+     * @param string $expected
+     * @param string $message
      * @dataProvider trailConstructor
      */
     public function testConstructor($uuid, $name, $description, $posts, $expected, $message)
@@ -57,10 +57,10 @@ class TestTrail extends TestCase
     }
 
     /**
-     * @param $posts
-     * @param $post
-     * @param $expected
-     * @param $message
+     * @param Post[] $posts
+     * @param Post $post
+     * @param string $expected
+     * @param string $message
      * @dataProvider addPostProvider
      */
     public function testAddPost($posts, $post, $expected, $message)
@@ -71,10 +71,10 @@ class TestTrail extends TestCase
     }
 
     /**
-     * @param $posts
-     * @param $post
-     * @param $expected
-     * @param $message
+     * @param Post[] $posts
+     * @param Post $post
+     * @param string $expected
+     * @param string $message
      * @dataProvider removePostProvider
      */
     public function testRemovePost($posts, $post, $expected, $message)
@@ -98,7 +98,7 @@ class TestTrail extends TestCase
                 [$this->post1, $this->post2],
                 Trail::class,
                 'more posts',
-            ],
+            ]
         ];
     }
 
@@ -119,7 +119,7 @@ class TestTrail extends TestCase
                 $this->post1,
                 [$this->post1, $this->post2],
                 'negative test, posts should not be duplicated',
-            ],
+            ]
         ];
     }
 

@@ -47,7 +47,7 @@ class Author extends AbstractEntity
      * @param DateTime|null $birthdate
      * @throws InvalidUuidStringException
      */
-    public function __construct($name, $email, $bio, $id = null, DateTime $birthdate = null)
+    public function __construct(string $name, string $email, string $bio, string $id = null, DateTime $birthdate = null)
     {
         $this->setId($id);
         $this->setName($name);

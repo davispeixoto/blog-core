@@ -16,6 +16,8 @@ use stdClass;
 
 class AbstractEntity extends stdClass
 {
+    const UUID_TYPE_RANDOM = 4;
+
     /**
      * @var UuidInterface
      */
@@ -36,19 +38,37 @@ class AbstractEntity extends stdClass
     public function setId(string $id = null)
     {
         if ($id === null || $id === '') {
-            $uuid = Uuid::uuid4();
+            $this->id = Uuid::uuid4();
         } else {
-            if (Uuid::isValid($id)) {
-                $uuid = Uuid::fromString($id);
-            } else {
-                throw new InvalidUuidStringException('Invalid string');
-            }
+            $this->id = $this->isVersionValid(Uuid::fromString($this->isValidString($id)));
+        }
+    }
+
+    /**
+     * @param string $id
+     * @return string
+     * @throws InvalidUuidStringException
+     */
+    private function isValidString(string $id): string
+    {
+        if (!Uuid::isValid($id)) {
+            throw new InvalidUuidStringException('Invalid string');
         }
 
-        if ($uuid->getVersion() !== Uuid::uuid4()->getVersion()) {
+        return $id;
+    }
+
+    /**
+     * @param UuidInterface $uuid
+     * @return UuidInterface
+     * @throws InvalidUuidStringException
+     */
+    private function isVersionValid(UuidInterface $uuid): UuidInterface
+    {
+        if ($uuid->getVersion() !== self::UUID_TYPE_RANDOM) {
             throw new InvalidUuidStringException('Not supported version: '.$uuid->getVersion());
         }
 
-        $this->id = $uuid;
+        return $uuid;
     }
 }

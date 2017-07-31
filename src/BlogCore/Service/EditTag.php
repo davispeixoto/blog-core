@@ -10,57 +10,23 @@ namespace DavisPeixoto\BlogCore\Service;
 
 
 use DavisPeixoto\BlogCore\Entity\Tag;
-use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
 use DavisPeixoto\BlogCore\Repository\AbstractTagRepository;
-use Exception;
 use Psr\Log\LoggerInterface;
-use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class EditTag
  * @package DavisPeixoto\BlogCore\Service
  */
-class EditTag implements ServiceInterface
+class EditTag extends AbstractSaveService
 {
     /**
-     * @var AbstractTagRepository
-     */
-    private $tagRepository;
-
-    /**
-     * @var Tag
-     */
-    private $tag;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
      * EditTag constructor.
-     * @param AbstractTagRepository $tagRepository
-     * @param Tag $tag
+     * @param AbstractTagRepository $repository
+     * @param Tag $entity
      * @param LoggerInterface $logger
      */
-    public function __construct(AbstractTagRepository $tagRepository, Tag $tag, LoggerInterface $logger)
+    public function __construct(AbstractTagRepository $repository, Tag $entity, LoggerInterface $logger)
     {
-        $this->tagRepository = $tagRepository;
-        $this->tag = $tag;
-        $this->logger = $logger;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function run()
-    {
-        try {
-            return $this->tagRepository->save($this->tag);
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage());
-        }
-
-        return null;
+        parent::__construct($repository, $entity, $logger);
     }
 }

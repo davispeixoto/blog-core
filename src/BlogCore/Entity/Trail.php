@@ -39,7 +39,7 @@ class Trail extends AbstractEntity
      * @param Post[] $posts
      * @throws InvalidUuidStringException
      */
-    public function __construct($name, $description, string $id = null, array $posts = [])
+    public function __construct(string $name, string $description, string $id = null, array $posts = [])
     {
         $this->setId($id);
         $this->setName($name);

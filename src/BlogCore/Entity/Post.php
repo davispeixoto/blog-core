@@ -54,8 +54,8 @@ class Post extends AbstractEntity
      * @throws InvalidUuidStringException
      */
     public function __construct(
-        $title,
-        $body,
+        string $title,
+        string $body,
         Author $authorId,
         string $id = null,
         array $tags = [],

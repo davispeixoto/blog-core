@@ -17,13 +17,13 @@ use Ramsey\Uuid\Uuid;
 class TestAuthor extends TestCase
 {
     /**
-     * @param $uuid
-     * @param $name
-     * @param $email
-     * @param $bio
-     * @param $birthdate
-     * @param $expected
-     * @param $message
+     * @param string|null $uuid
+     * @param string $name
+     * @param string $email
+     * @param string $bio
+     * @param DateTime|null $birthdate
+     * @param string $expected
+     * @param string $message
      * @dataProvider authorConstructorProvider
      */
     public function testConstructor($uuid, $name, $email, $bio, $birthdate, $expected, $message)
@@ -34,11 +34,11 @@ class TestAuthor extends TestCase
     }
 
     /**
-     * @param $uuid
-     * @param $name
-     * @param $email
-     * @param $bio
-     * @param $birthdate
+     * @param string|null $uuid
+     * @param string $name
+     * @param string $email
+     * @param string $bio
+     * @param DateTime|null $birthdate
      * @dataProvider constructorException
      */
     public function testInvalidId($uuid, $name, $email, $bio, $birthdate)
@@ -49,9 +49,9 @@ class TestAuthor extends TestCase
 
     /**
      * @param Author $author
-     * @param $newEmailAddress
-     * @param $expected
-     * @param $message
+     * @param string $newEmailAddress
+     * @param string $expected
+     * @param string $message
      * @dataProvider emailProvider
      */
     public function testEmailShouldBeValid(Author $author, $newEmailAddress, $expected, $message)
