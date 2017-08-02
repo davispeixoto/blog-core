@@ -102,326 +102,38 @@ class TestServices extends TestCase
         $filters = [];
 
         return [
-            [
-                CreateAuthor::class,
-                'save',
-                $authorUuid,
-                $this->getMockForAbstractClass(AbstractAuthorRepository::class),
-                $author,
-                $this->createMock(LoggerInterface::class),
-                $authorUuid,
-                'Create author service'
-            ],
-            [
-                EditAuthor::class,
-                'save',
-                $authorUuid,
-                $this->getMockForAbstractClass(AbstractAuthorRepository::class),
-                $author,
-                $this->createMock(LoggerInterface::class),
-                $authorUuid,
-                'Edit author service'
-            ],
-            [
-                DeleteAuthor::class,
-                'delete',
-                true,
-                $this->getMockForAbstractClass(AbstractAuthorRepository::class),
-                $author,
-                $this->createMock(LoggerInterface::class),
-                true,
-                'Delete author service'
-            ],
-            [
-                GetAuthor::class,
-                'get',
-                $author,
-                $this->getMockForAbstractClass(AbstractAuthorRepository::class),
-                $authorUuid,
-                $this->createMock(LoggerInterface::class),
-                $author,
-                'Get author service'
-            ],
-            [
-                ListAuthors::class,
-                'getList',
-                [$author],
-                $this->getMockForAbstractClass(AbstractAuthorRepository::class),
-                $filters,
-                $this->createMock(LoggerInterface::class),
-                [$author],
-                'List authors service'
-            ],
-            [
-                CreatePost::class,
-                'save',
-                $postUuid,
-                $this->getMockForAbstractClass(AbstractPostRepository::class),
-                $post,
-                $this->createMock(LoggerInterface::class),
-                $postUuid,
-                'Create post service'
-            ],
-            [
-                EditPost::class,
-                'save',
-                $postUuid,
-                $this->getMockForAbstractClass(AbstractPostRepository::class),
-                $post,
-                $this->createMock(LoggerInterface::class),
-                $postUuid,
-                'Edit post service'
-            ],
-            [
-                DeletePost::class,
-                'delete',
-                true,
-                $this->getMockForAbstractClass(AbstractPostRepository::class),
-                $post,
-                $this->createMock(LoggerInterface::class),
-                true,
-                'Delete post service'
-            ],
-            [
-                GetPost::class,
-                'get',
-                $post,
-                $this->getMockForAbstractClass(AbstractPostRepository::class),
-                $postUuid,
-                $this->createMock(LoggerInterface::class),
-                $post,
-                'Get post service'
-            ],
-            [
-                ListPosts::class,
-                'getList',
-                [$post],
-                $this->getMockForAbstractClass(AbstractPostRepository::class),
-                $filters,
-                $this->createMock(LoggerInterface::class),
-                [$post],
-                'List posts service'
-            ],
-            [
-                CreateTag::class,
-                'save',
-                $tagUuid,
-                $this->getMockForAbstractClass(AbstractTagRepository::class),
-                $tag,
-                $this->createMock(LoggerInterface::class),
-                $tagUuid,
-                'Create tag service'
-            ],
-            [
-                EditTag::class,
-                'save',
-                $tagUuid,
-                $this->getMockForAbstractClass(AbstractTagRepository::class),
-                $tag,
-                $this->createMock(LoggerInterface::class),
-                $tagUuid,
-                'Edit tag service'
-            ],
-            [
-                DeleteTag::class,
-                'delete',
-                true,
-                $this->getMockForAbstractClass(AbstractTagRepository::class),
-                $tag,
-                $this->createMock(LoggerInterface::class),
-                true,
-                'Delete tag service'
-            ],
-            [
-                GetTag::class,
-                'get',
-                $tag,
-                $this->getMockForAbstractClass(AbstractTagRepository::class),
-                $tagUuid,
-                $this->createMock(LoggerInterface::class),
-                $tag,
-                'Get tag service'
-            ],
-            [
-                ListTags::class,
-                'getList',
-                [$tag],
-                $this->getMockForAbstractClass(AbstractTagRepository::class),
-                $filters,
-                $this->createMock(LoggerInterface::class),
-                [$tag],
-                'List tags service'
-            ],
-            [
-                CreateTrail::class,
-                'save',
-                $trailUuid,
-                $this->getMockForAbstractClass(AbstractTrailRepository::class),
-                $trail,
-                $this->createMock(LoggerInterface::class),
-                $trailUuid,
-                'Create trail service'
-            ],
-            [
-                EditTrail::class,
-                'save',
-                $trailUuid,
-                $this->getMockForAbstractClass(AbstractTrailRepository::class),
-                $trail,
-                $this->createMock(LoggerInterface::class),
-                $trailUuid,
-                'Edit trail service'
-            ],
-            [
-                DeleteTrail::class,
-                'delete',
-                true,
-                $this->getMockForAbstractClass(AbstractTrailRepository::class),
-                $trail,
-                $this->createMock(LoggerInterface::class),
-                true,
-                'Delete trail service'
-            ],
-            [
-                GetTrail::class,
-                'get',
-                $trail,
-                $this->getMockForAbstractClass(AbstractTrailRepository::class),
-                $trailUuid,
-                $this->createMock(LoggerInterface::class),
-                $trail,
-                'Get trail service'
-            ],
-            [
-                ListTrails::class,
-                'getList',
-                [$trail],
-                $this->getMockForAbstractClass(AbstractTrailRepository::class),
-                $filters,
-                $this->createMock(LoggerInterface::class),
-                [$trail],
-                'List trails service'
-            ],
-            [
-                DeleteAuthor::class,
-                'delete',
-                false,
-                $this->getMockForAbstractClass(AbstractAuthorRepository::class),
-                $author,
-                $this->createMock(LoggerInterface::class),
-                false,
-                'Delete author service'
-            ],
-            [
-                GetAuthor::class,
-                'get',
-                null,
-                $this->getMockForAbstractClass(AbstractAuthorRepository::class),
-                $authorUuid,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Get author service'
-            ],
-            [
-                ListAuthors::class,
-                'getList',
-                [],
-                $this->getMockForAbstractClass(AbstractAuthorRepository::class),
-                $filters,
-                $this->createMock(LoggerInterface::class),
-                [],
-                'List authors service'
-            ],
-            [
-                DeletePost::class,
-                'delete',
-                false,
-                $this->getMockForAbstractClass(AbstractPostRepository::class),
-                $post,
-                $this->createMock(LoggerInterface::class),
-                false,
-                'Delete post service'
-            ],
-            [
-                GetPost::class,
-                'get',
-                null,
-                $this->getMockForAbstractClass(AbstractPostRepository::class),
-                $postUuid,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Get post service'
-            ],
-            [
-                ListPosts::class,
-                'getList',
-                [],
-                $this->getMockForAbstractClass(AbstractPostRepository::class),
-                $filters,
-                $this->createMock(LoggerInterface::class),
-                [],
-                'List posts service'
-            ],
-            [
-                DeleteTag::class,
-                'delete',
-                false,
-                $this->getMockForAbstractClass(AbstractTagRepository::class),
-                $tag,
-                $this->createMock(LoggerInterface::class),
-                false,
-                'Delete tag service'
-            ],
-            [
-                GetTag::class,
-                'get',
-                null,
-                $this->getMockForAbstractClass(AbstractTagRepository::class),
-                $tagUuid,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Get tag service'
-            ],
-            [
-                ListTags::class,
-                'getList',
-                [],
-                $this->getMockForAbstractClass(AbstractTagRepository::class),
-                $filters,
-                $this->createMock(LoggerInterface::class),
-                [],
-                'List tags service'
-            ],
-            [
-                DeleteTrail::class,
-                'delete',
-                false,
-                $this->getMockForAbstractClass(AbstractTrailRepository::class),
-                $trail,
-                $this->createMock(LoggerInterface::class),
-                false,
-                'Delete trail service'
-            ],
-            [
-                GetTrail::class,
-                'get',
-                null,
-                $this->getMockForAbstractClass(AbstractTrailRepository::class),
-                $trailUuid,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Get trail service'
-            ],
-            [
-                ListTrails::class,
-                'getList',
-                [],
-                $this->getMockForAbstractClass(AbstractTrailRepository::class),
-                $filters,
-                $this->createMock(LoggerInterface::class),
-                [],
-                'List trails service'
-            ]
+            [CreateAuthor::class, 'save', $authorUuid, $this->getMockForAbstractClass(AbstractAuthorRepository::class), $author, $this->createMock(LoggerInterface::class), $authorUuid, 'Create author service'],
+            [EditAuthor::class, 'save', $authorUuid, $this->getMockForAbstractClass(AbstractAuthorRepository::class), $author, $this->createMock(LoggerInterface::class), $authorUuid, 'Edit author service'],
+            [DeleteAuthor::class, 'delete', true, $this->getMockForAbstractClass(AbstractAuthorRepository::class), $author, $this->createMock(LoggerInterface::class), true, 'Delete author service'],
+            [GetAuthor::class, 'get', $author, $this->getMockForAbstractClass(AbstractAuthorRepository::class), $authorUuid, $this->createMock(LoggerInterface::class), $author, 'Get author service'],
+            [ListAuthors::class, 'getList', [$author], $this->getMockForAbstractClass(AbstractAuthorRepository::class), $filters, $this->createMock(LoggerInterface::class), [$author], 'List authors service'],
+            [CreatePost::class, 'save', $postUuid, $this->getMockForAbstractClass(AbstractPostRepository::class), $post, $this->createMock(LoggerInterface::class), $postUuid, 'Create post service'],
+            [EditPost::class, 'save', $postUuid, $this->getMockForAbstractClass(AbstractPostRepository::class), $post, $this->createMock(LoggerInterface::class), $postUuid, 'Edit post service'],
+            [DeletePost::class, 'delete', true, $this->getMockForAbstractClass(AbstractPostRepository::class), $post, $this->createMock(LoggerInterface::class), true, 'Delete post service'],
+            [GetPost::class, 'get', $post, $this->getMockForAbstractClass(AbstractPostRepository::class), $postUuid, $this->createMock(LoggerInterface::class), $post, 'Get post service'],
+            [ListPosts::class, 'getList', [$post], $this->getMockForAbstractClass(AbstractPostRepository::class), $filters, $this->createMock(LoggerInterface::class), [$post], 'List posts service'],
+            [CreateTag::class, 'save', $tagUuid, $this->getMockForAbstractClass(AbstractTagRepository::class), $tag, $this->createMock(LoggerInterface::class), $tagUuid, 'Create tag service'],
+            [EditTag::class, 'save', $tagUuid, $this->getMockForAbstractClass(AbstractTagRepository::class), $tag, $this->createMock(LoggerInterface::class), $tagUuid, 'Edit tag service'],
+            [DeleteTag::class, 'delete', true, $this->getMockForAbstractClass(AbstractTagRepository::class), $tag, $this->createMock(LoggerInterface::class), true, 'Delete tag service'],
+            [GetTag::class, 'get', $tag, $this->getMockForAbstractClass(AbstractTagRepository::class), $tagUuid, $this->createMock(LoggerInterface::class), $tag, 'Get tag service'],
+            [ListTags::class, 'getList', [$tag], $this->getMockForAbstractClass(AbstractTagRepository::class), $filters, $this->createMock(LoggerInterface::class), [$tag], 'List tags service'],
+            [CreateTrail::class, 'save', $trailUuid, $this->getMockForAbstractClass(AbstractTrailRepository::class), $trail, $this->createMock(LoggerInterface::class), $trailUuid, 'Create trail service'],
+            [EditTrail::class, 'save', $trailUuid, $this->getMockForAbstractClass(AbstractTrailRepository::class), $trail, $this->createMock(LoggerInterface::class), $trailUuid, 'Edit trail service'],
+            [DeleteTrail::class, 'delete', true, $this->getMockForAbstractClass(AbstractTrailRepository::class), $trail, $this->createMock(LoggerInterface::class), true, 'Delete trail service'],
+            [GetTrail::class, 'get', $trail, $this->getMockForAbstractClass(AbstractTrailRepository::class), $trailUuid, $this->createMock(LoggerInterface::class), $trail, 'Get trail service'],
+            [ListTrails::class, 'getList', [$trail], $this->getMockForAbstractClass(AbstractTrailRepository::class), $filters, $this->createMock(LoggerInterface::class), [$trail], 'List trails service'],
+            [DeleteAuthor::class, 'delete', false, $this->getMockForAbstractClass(AbstractAuthorRepository::class), $author, $this->createMock(LoggerInterface::class), false, 'Delete author service'],
+            [GetAuthor::class, 'get', null, $this->getMockForAbstractClass(AbstractAuthorRepository::class), $authorUuid, $this->createMock(LoggerInterface::class), null, 'Get author service'],
+            [ListAuthors::class, 'getList', [], $this->getMockForAbstractClass(AbstractAuthorRepository::class), $filters, $this->createMock(LoggerInterface::class), [], 'List authors service'],
+            [DeletePost::class, 'delete', false, $this->getMockForAbstractClass(AbstractPostRepository::class), $post, $this->createMock(LoggerInterface::class), false, 'Delete post service'],
+            [GetPost::class, 'get', null, $this->getMockForAbstractClass(AbstractPostRepository::class), $postUuid, $this->createMock(LoggerInterface::class), null, 'Get post service'],
+            [ListPosts::class, 'getList', [], $this->getMockForAbstractClass(AbstractPostRepository::class), $filters, $this->createMock(LoggerInterface::class), [], 'List posts service'],
+            [DeleteTag::class, 'delete', false, $this->getMockForAbstractClass(AbstractTagRepository::class), $tag, $this->createMock(LoggerInterface::class), false, 'Delete tag service'],
+            [GetTag::class, 'get', null, $this->getMockForAbstractClass(AbstractTagRepository::class), $tagUuid, $this->createMock(LoggerInterface::class), null, 'Get tag service'],
+            [ListTags::class, 'getList', [], $this->getMockForAbstractClass(AbstractTagRepository::class), $filters, $this->createMock(LoggerInterface::class), [], 'List tags service'],
+            [DeleteTrail::class, 'delete', false, $this->getMockForAbstractClass(AbstractTrailRepository::class), $trail, $this->createMock(LoggerInterface::class), false, 'Delete trail service'],
+            [GetTrail::class, 'get', null, $this->getMockForAbstractClass(AbstractTrailRepository::class), $trailUuid, $this->createMock(LoggerInterface::class), null, 'Get trail service'],
+            [ListTrails::class, 'getList', [], $this->getMockForAbstractClass(AbstractTrailRepository::class), $filters, $this->createMock(LoggerInterface::class), [], 'List trails service']
         ];
     }
 
@@ -439,186 +151,26 @@ class TestServices extends TestCase
         $filters = [];
 
         return [
-            [
-                CreateAuthor::class,
-                'save',
-                $this->getMockForAbstractClass(AbstractAuthorRepository::class),
-                $author,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Create author service'
-            ],
-            [
-                EditAuthor::class,
-                'save',
-                $this->getMockForAbstractClass(AbstractAuthorRepository::class),
-                $author,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Edit author service'
-            ],
-            [
-                DeleteAuthor::class,
-                'delete',
-                $this->getMockForAbstractClass(AbstractAuthorRepository::class),
-                $author,
-                $this->createMock(LoggerInterface::class),
-                false,
-                'Delete author service'
-            ],
-            [
-                GetAuthor::class,
-                'get',
-                $this->getMockForAbstractClass(AbstractAuthorRepository::class),
-                $authorUuid,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Get author service'
-            ],
-            [
-                ListAuthors::class,
-                'getList',
-                $this->getMockForAbstractClass(AbstractAuthorRepository::class),
-                $filters,
-                $this->createMock(LoggerInterface::class),
-                [],
-                'List authors service'
-            ],
-            [
-                CreatePost::class,
-                'save',
-                $this->getMockForAbstractClass(AbstractPostRepository::class),
-                $post,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Create post service'
-            ],
-            [
-                EditPost::class,
-                'save',
-                $this->getMockForAbstractClass(AbstractPostRepository::class),
-                $post,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Edit post service'
-            ],
-            [
-                DeletePost::class,
-                'delete',
-                $this->getMockForAbstractClass(AbstractPostRepository::class),
-                $post,
-                $this->createMock(LoggerInterface::class),
-                false,
-                'Delete post service'
-            ],
-            [
-                GetPost::class,
-                'get',
-                $this->getMockForAbstractClass(AbstractPostRepository::class),
-                $postUuid,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Get post service'
-            ],
-            [
-                ListPosts::class,
-                'getList',
-                $this->getMockForAbstractClass(AbstractPostRepository::class),
-                $filters,
-                $this->createMock(LoggerInterface::class),
-                [],
-                'List posts service'
-            ],
-            [
-                CreateTag::class,
-                'save',
-                $this->getMockForAbstractClass(AbstractTagRepository::class),
-                $tag,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Create tag service'
-            ],
-            [
-                EditTag::class,
-                'save',
-                $this->getMockForAbstractClass(AbstractTagRepository::class),
-                $tag,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Edit tag service'
-            ],
-            [
-                DeleteTag::class,
-                'delete',
-                $this->getMockForAbstractClass(AbstractTagRepository::class),
-                $tag,
-                $this->createMock(LoggerInterface::class),
-                false,
-                'Delete tag service'
-            ],
-            [
-                GetTag::class,
-                'get',
-                $this->getMockForAbstractClass(AbstractTagRepository::class),
-                $tagUuid,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Get tag service'
-            ],
-            [
-                ListTags::class,
-                'getList',
-                $this->getMockForAbstractClass(AbstractTagRepository::class),
-                $filters,
-                $this->createMock(LoggerInterface::class),
-                [],
-                'List tags service'
-            ],
-            [
-                CreateTrail::class,
-                'save',
-                $this->getMockForAbstractClass(AbstractTrailRepository::class),
-                $trail,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Create trail service'
-            ],
-            [
-                EditTrail::class,
-                'save',
-                $this->getMockForAbstractClass(AbstractTrailRepository::class),
-                $trail,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Edit trail service'
-            ],
-            [
-                DeleteTrail::class,
-                'delete',
-                $this->getMockForAbstractClass(AbstractTrailRepository::class),
-                $trail,
-                $this->createMock(LoggerInterface::class),
-                false,
-                'Delete trail service'
-            ],
-            [
-                GetTrail::class,
-                'get',
-                $this->getMockForAbstractClass(AbstractTrailRepository::class),
-                $trailUuid,
-                $this->createMock(LoggerInterface::class),
-                null,
-                'Get trail service'
-            ],
-            [
-                ListTrails::class,
-                'getList',
-                $this->getMockForAbstractClass(AbstractTrailRepository::class),
-                $filters,
-                $this->createMock(LoggerInterface::class),
-                [],
-                'List trails service'
-            ]
+            [CreateAuthor::class, 'save', $this->getMockForAbstractClass(AbstractAuthorRepository::class), $author, $this->createMock(LoggerInterface::class), null, 'Create author service'],
+            [EditAuthor::class, 'save', $this->getMockForAbstractClass(AbstractAuthorRepository::class), $author, $this->createMock(LoggerInterface::class), null, 'Edit author service'],
+            [DeleteAuthor::class, 'delete', $this->getMockForAbstractClass(AbstractAuthorRepository::class), $author, $this->createMock(LoggerInterface::class), false, 'Delete author service'],
+            [GetAuthor::class, 'get', $this->getMockForAbstractClass(AbstractAuthorRepository::class), $authorUuid, $this->createMock(LoggerInterface::class), null, 'Get author service'],
+            [ListAuthors::class, 'getList', $this->getMockForAbstractClass(AbstractAuthorRepository::class), $filters, $this->createMock(LoggerInterface::class), [], 'List authors service'],
+            [CreatePost::class, 'save', $this->getMockForAbstractClass(AbstractPostRepository::class), $post, $this->createMock(LoggerInterface::class), null, 'Create post service'],
+            [EditPost::class, 'save', $this->getMockForAbstractClass(AbstractPostRepository::class), $post, $this->createMock(LoggerInterface::class), null, 'Edit post service'],
+            [DeletePost::class, 'delete', $this->getMockForAbstractClass(AbstractPostRepository::class), $post, $this->createMock(LoggerInterface::class), false, 'Delete post service'],
+            [GetPost::class, 'get', $this->getMockForAbstractClass(AbstractPostRepository::class), $postUuid, $this->createMock(LoggerInterface::class), null, 'Get post service'],
+            [ListPosts::class, 'getList', $this->getMockForAbstractClass(AbstractPostRepository::class), $filters, $this->createMock(LoggerInterface::class), [], 'List posts service'],
+            [CreateTag::class, 'save', $this->getMockForAbstractClass(AbstractTagRepository::class), $tag, $this->createMock(LoggerInterface::class), null, 'Create tag service'],
+            [EditTag::class, 'save', $this->getMockForAbstractClass(AbstractTagRepository::class), $tag, $this->createMock(LoggerInterface::class), null, 'Edit tag service'],
+            [DeleteTag::class, 'delete', $this->getMockForAbstractClass(AbstractTagRepository::class), $tag, $this->createMock(LoggerInterface::class), false, 'Delete tag service'],
+            [GetTag::class, 'get', $this->getMockForAbstractClass(AbstractTagRepository::class), $tagUuid, $this->createMock(LoggerInterface::class), null, 'Get tag service'],
+            [ListTags::class, 'getList', $this->getMockForAbstractClass(AbstractTagRepository::class), $filters, $this->createMock(LoggerInterface::class), [], 'List tags service'],
+            [CreateTrail::class, 'save', $this->getMockForAbstractClass(AbstractTrailRepository::class), $trail, $this->createMock(LoggerInterface::class), null, 'Create trail service'],
+            [EditTrail::class, 'save', $this->getMockForAbstractClass(AbstractTrailRepository::class), $trail, $this->createMock(LoggerInterface::class), null, 'Edit trail service'],
+            [DeleteTrail::class, 'delete', $this->getMockForAbstractClass(AbstractTrailRepository::class), $trail, $this->createMock(LoggerInterface::class), false, 'Delete trail service'],
+            [GetTrail::class, 'get', $this->getMockForAbstractClass(AbstractTrailRepository::class), $trailUuid, $this->createMock(LoggerInterface::class), null, 'Get trail service'],
+            [ListTrails::class, 'getList', $this->getMockForAbstractClass(AbstractTrailRepository::class), $filters, $this->createMock(LoggerInterface::class), [], 'List trails service']
         ];
     }
 }
