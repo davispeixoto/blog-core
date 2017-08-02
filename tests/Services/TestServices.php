@@ -9,13 +9,10 @@
 namespace DavisPeixoto\BlogCore\Tests\Services;
 
 use DateTime;
-use DavisPeixoto\BlogCore\Entity\AbstractEntity;
 use DavisPeixoto\BlogCore\Entity\Author;
 use DavisPeixoto\BlogCore\Entity\Post;
 use DavisPeixoto\BlogCore\Entity\Tag;
 use DavisPeixoto\BlogCore\Entity\Trail;
-use DavisPeixoto\BlogCore\Interfaces\RepositoryInterface;
-use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
 use DavisPeixoto\BlogCore\Repository\AbstractAuthorRepository;
 use DavisPeixoto\BlogCore\Repository\AbstractPostRepository;
 use DavisPeixoto\BlogCore\Repository\AbstractTagRepository;
@@ -48,43 +45,17 @@ use Ramsey\Uuid\Uuid;
 class TestServices extends TestCase
 {
     /**
-     * @param RepositoryInterface $repository
-     * @param AbstractEntity $entity
-     * @param LoggerInterface $logger
-     * @param ServiceInterface $serviceName
-     * @param string $method
-     * @param mixed $willReturn
-     * @param string $expected
-     * @param string $message
-     * @dataProvider successServiceProvider
-     */
-    public function testIsSuccessService(
-        $serviceName,
-        $method,
-        $willReturn,
-        $repository,
-        $entity,
-        $logger,
-        $expected,
-        $message
-    ) {
-        $repository->expects($this->once())->method($method)->will($this->returnValue($willReturn));
-        $service = new $serviceName($repository, $entity, $logger);
-        $this->assertEquals($expected, $service->run(), $message);
-    }
-
-    /**
-     * @param $serviceName
-     * @param $method
-     * @param $willReturn
      * @param $repository
      * @param $entity
      * @param $logger
+     * @param $serviceName
+     * @param $method
+     * @param $willReturn
      * @param $expected
      * @param $message
-     * @dataProvider failureServiceProvider
+     * @dataProvider valueServiceProvider
      */
-    public function testIsFailureService(
+    public function testIsSuccessService(
         $serviceName,
         $method,
         $willReturn,
@@ -117,7 +88,7 @@ class TestServices extends TestCase
         $this->assertEquals($expected, $service->run(), $message);
     }
 
-    public function successServiceProvider()
+    public function valueServiceProvider()
     {
         $authorUuid = Uuid::uuid4()->toString();
         $postUuid = Uuid::uuid4()->toString();
@@ -139,7 +110,7 @@ class TestServices extends TestCase
                 $author,
                 $this->createMock(LoggerInterface::class),
                 $authorUuid,
-                'Create author service',
+                'Create author service'
             ],
             [
                 EditAuthor::class,
@@ -149,7 +120,7 @@ class TestServices extends TestCase
                 $author,
                 $this->createMock(LoggerInterface::class),
                 $authorUuid,
-                'Edit author service',
+                'Edit author service'
             ],
             [
                 DeleteAuthor::class,
@@ -159,7 +130,7 @@ class TestServices extends TestCase
                 $author,
                 $this->createMock(LoggerInterface::class),
                 true,
-                'Delete author service',
+                'Delete author service'
             ],
             [
                 GetAuthor::class,
@@ -169,7 +140,7 @@ class TestServices extends TestCase
                 $authorUuid,
                 $this->createMock(LoggerInterface::class),
                 $author,
-                'Get author service',
+                'Get author service'
             ],
             [
                 ListAuthors::class,
@@ -179,9 +150,8 @@ class TestServices extends TestCase
                 $filters,
                 $this->createMock(LoggerInterface::class),
                 [$author],
-                'List authors service',
+                'List authors service'
             ],
-
             [
                 CreatePost::class,
                 'save',
@@ -190,7 +160,7 @@ class TestServices extends TestCase
                 $post,
                 $this->createMock(LoggerInterface::class),
                 $postUuid,
-                'Create post service',
+                'Create post service'
             ],
             [
                 EditPost::class,
@@ -200,7 +170,7 @@ class TestServices extends TestCase
                 $post,
                 $this->createMock(LoggerInterface::class),
                 $postUuid,
-                'Edit post service',
+                'Edit post service'
             ],
             [
                 DeletePost::class,
@@ -210,7 +180,7 @@ class TestServices extends TestCase
                 $post,
                 $this->createMock(LoggerInterface::class),
                 true,
-                'Delete post service',
+                'Delete post service'
             ],
             [
                 GetPost::class,
@@ -220,7 +190,7 @@ class TestServices extends TestCase
                 $postUuid,
                 $this->createMock(LoggerInterface::class),
                 $post,
-                'Get post service',
+                'Get post service'
             ],
             [
                 ListPosts::class,
@@ -230,9 +200,8 @@ class TestServices extends TestCase
                 $filters,
                 $this->createMock(LoggerInterface::class),
                 [$post],
-                'List posts service',
+                'List posts service'
             ],
-
             [
                 CreateTag::class,
                 'save',
@@ -241,7 +210,7 @@ class TestServices extends TestCase
                 $tag,
                 $this->createMock(LoggerInterface::class),
                 $tagUuid,
-                'Create tag service',
+                'Create tag service'
             ],
             [
                 EditTag::class,
@@ -251,7 +220,7 @@ class TestServices extends TestCase
                 $tag,
                 $this->createMock(LoggerInterface::class),
                 $tagUuid,
-                'Edit tag service',
+                'Edit tag service'
             ],
             [
                 DeleteTag::class,
@@ -261,7 +230,7 @@ class TestServices extends TestCase
                 $tag,
                 $this->createMock(LoggerInterface::class),
                 true,
-                'Delete tag service',
+                'Delete tag service'
             ],
             [
                 GetTag::class,
@@ -271,7 +240,7 @@ class TestServices extends TestCase
                 $tagUuid,
                 $this->createMock(LoggerInterface::class),
                 $tag,
-                'Get tag service',
+                'Get tag service'
             ],
             [
                 ListTags::class,
@@ -281,9 +250,8 @@ class TestServices extends TestCase
                 $filters,
                 $this->createMock(LoggerInterface::class),
                 [$tag],
-                'List tags service',
+                'List tags service'
             ],
-
             [
                 CreateTrail::class,
                 'save',
@@ -292,7 +260,7 @@ class TestServices extends TestCase
                 $trail,
                 $this->createMock(LoggerInterface::class),
                 $trailUuid,
-                'Create trail service',
+                'Create trail service'
             ],
             [
                 EditTrail::class,
@@ -302,7 +270,7 @@ class TestServices extends TestCase
                 $trail,
                 $this->createMock(LoggerInterface::class),
                 $trailUuid,
-                'Edit trail service',
+                'Edit trail service'
             ],
             [
                 DeleteTrail::class,
@@ -312,7 +280,7 @@ class TestServices extends TestCase
                 $trail,
                 $this->createMock(LoggerInterface::class),
                 true,
-                'Delete trail service',
+                'Delete trail service'
             ],
             [
                 GetTrail::class,
@@ -322,7 +290,7 @@ class TestServices extends TestCase
                 $trailUuid,
                 $this->createMock(LoggerInterface::class),
                 $trail,
-                'Get trail service',
+                'Get trail service'
             ],
             [
                 ListTrails::class,
@@ -332,25 +300,8 @@ class TestServices extends TestCase
                 $filters,
                 $this->createMock(LoggerInterface::class),
                 [$trail],
-                'List trails service',
+                'List trails service'
             ],
-        ];
-    }
-
-    public function failureServiceProvider()
-    {
-        $authorUuid = Uuid::uuid4()->toString();
-        $postUuid = Uuid::uuid4()->toString();
-        $tagUuid = Uuid::uuid4()->toString();
-        $trailUuid = Uuid::uuid4()->toString();
-
-        $author = new Author('Davis', 'email@example.org', 'Some string', $authorUuid, new DateTime());
-        $post = new Post('A Post', 'Lorem ipsum', $author, $postUuid, [], null);
-        $tag = new Tag('A tag', $tagUuid);
-        $trail = new Trail('A trail', 'An amazing trail', $trailUuid, [$post]);
-        $filters = [];
-
-        return [
             [
                 DeleteAuthor::class,
                 'delete',
@@ -359,7 +310,7 @@ class TestServices extends TestCase
                 $author,
                 $this->createMock(LoggerInterface::class),
                 false,
-                'Delete author service',
+                'Delete author service'
             ],
             [
                 GetAuthor::class,
@@ -369,7 +320,7 @@ class TestServices extends TestCase
                 $authorUuid,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Get author service',
+                'Get author service'
             ],
             [
                 ListAuthors::class,
@@ -379,9 +330,8 @@ class TestServices extends TestCase
                 $filters,
                 $this->createMock(LoggerInterface::class),
                 [],
-                'List authors service',
+                'List authors service'
             ],
-
             [
                 DeletePost::class,
                 'delete',
@@ -390,7 +340,7 @@ class TestServices extends TestCase
                 $post,
                 $this->createMock(LoggerInterface::class),
                 false,
-                'Delete post service',
+                'Delete post service'
             ],
             [
                 GetPost::class,
@@ -400,7 +350,7 @@ class TestServices extends TestCase
                 $postUuid,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Get post service',
+                'Get post service'
             ],
             [
                 ListPosts::class,
@@ -410,9 +360,8 @@ class TestServices extends TestCase
                 $filters,
                 $this->createMock(LoggerInterface::class),
                 [],
-                'List posts service',
+                'List posts service'
             ],
-
             [
                 DeleteTag::class,
                 'delete',
@@ -421,7 +370,7 @@ class TestServices extends TestCase
                 $tag,
                 $this->createMock(LoggerInterface::class),
                 false,
-                'Delete tag service',
+                'Delete tag service'
             ],
             [
                 GetTag::class,
@@ -431,7 +380,7 @@ class TestServices extends TestCase
                 $tagUuid,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Get tag service',
+                'Get tag service'
             ],
             [
                 ListTags::class,
@@ -441,9 +390,8 @@ class TestServices extends TestCase
                 $filters,
                 $this->createMock(LoggerInterface::class),
                 [],
-                'List tags service',
+                'List tags service'
             ],
-
             [
                 DeleteTrail::class,
                 'delete',
@@ -452,7 +400,7 @@ class TestServices extends TestCase
                 $trail,
                 $this->createMock(LoggerInterface::class),
                 false,
-                'Delete trail service',
+                'Delete trail service'
             ],
             [
                 GetTrail::class,
@@ -462,7 +410,7 @@ class TestServices extends TestCase
                 $trailUuid,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Get trail service',
+                'Get trail service'
             ],
             [
                 ListTrails::class,
@@ -472,8 +420,8 @@ class TestServices extends TestCase
                 $filters,
                 $this->createMock(LoggerInterface::class),
                 [],
-                'List trails service',
-            ],
+                'List trails service'
+            ]
         ];
     }
 
@@ -498,7 +446,7 @@ class TestServices extends TestCase
                 $author,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Create author service',
+                'Create author service'
             ],
             [
                 EditAuthor::class,
@@ -507,7 +455,7 @@ class TestServices extends TestCase
                 $author,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Edit author service',
+                'Edit author service'
             ],
             [
                 DeleteAuthor::class,
@@ -516,7 +464,7 @@ class TestServices extends TestCase
                 $author,
                 $this->createMock(LoggerInterface::class),
                 false,
-                'Delete author service',
+                'Delete author service'
             ],
             [
                 GetAuthor::class,
@@ -525,7 +473,7 @@ class TestServices extends TestCase
                 $authorUuid,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Get author service',
+                'Get author service'
             ],
             [
                 ListAuthors::class,
@@ -534,9 +482,8 @@ class TestServices extends TestCase
                 $filters,
                 $this->createMock(LoggerInterface::class),
                 [],
-                'List authors service',
+                'List authors service'
             ],
-
             [
                 CreatePost::class,
                 'save',
@@ -544,7 +491,7 @@ class TestServices extends TestCase
                 $post,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Create post service',
+                'Create post service'
             ],
             [
                 EditPost::class,
@@ -553,7 +500,7 @@ class TestServices extends TestCase
                 $post,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Edit post service',
+                'Edit post service'
             ],
             [
                 DeletePost::class,
@@ -562,7 +509,7 @@ class TestServices extends TestCase
                 $post,
                 $this->createMock(LoggerInterface::class),
                 false,
-                'Delete post service',
+                'Delete post service'
             ],
             [
                 GetPost::class,
@@ -571,7 +518,7 @@ class TestServices extends TestCase
                 $postUuid,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Get post service',
+                'Get post service'
             ],
             [
                 ListPosts::class,
@@ -580,9 +527,8 @@ class TestServices extends TestCase
                 $filters,
                 $this->createMock(LoggerInterface::class),
                 [],
-                'List posts service',
+                'List posts service'
             ],
-
             [
                 CreateTag::class,
                 'save',
@@ -590,7 +536,7 @@ class TestServices extends TestCase
                 $tag,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Create tag service',
+                'Create tag service'
             ],
             [
                 EditTag::class,
@@ -599,7 +545,7 @@ class TestServices extends TestCase
                 $tag,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Edit tag service',
+                'Edit tag service'
             ],
             [
                 DeleteTag::class,
@@ -608,7 +554,7 @@ class TestServices extends TestCase
                 $tag,
                 $this->createMock(LoggerInterface::class),
                 false,
-                'Delete tag service',
+                'Delete tag service'
             ],
             [
                 GetTag::class,
@@ -617,7 +563,7 @@ class TestServices extends TestCase
                 $tagUuid,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Get tag service',
+                'Get tag service'
             ],
             [
                 ListTags::class,
@@ -626,9 +572,8 @@ class TestServices extends TestCase
                 $filters,
                 $this->createMock(LoggerInterface::class),
                 [],
-                'List tags service',
+                'List tags service'
             ],
-
             [
                 CreateTrail::class,
                 'save',
@@ -636,7 +581,7 @@ class TestServices extends TestCase
                 $trail,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Create trail service',
+                'Create trail service'
             ],
             [
                 EditTrail::class,
@@ -645,7 +590,7 @@ class TestServices extends TestCase
                 $trail,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Edit trail service',
+                'Edit trail service'
             ],
             [
                 DeleteTrail::class,
@@ -654,7 +599,7 @@ class TestServices extends TestCase
                 $trail,
                 $this->createMock(LoggerInterface::class),
                 false,
-                'Delete trail service',
+                'Delete trail service'
             ],
             [
                 GetTrail::class,
@@ -663,7 +608,7 @@ class TestServices extends TestCase
                 $trailUuid,
                 $this->createMock(LoggerInterface::class),
                 null,
-                'Get trail service',
+                'Get trail service'
             ],
             [
                 ListTrails::class,
@@ -672,8 +617,8 @@ class TestServices extends TestCase
                 $filters,
                 $this->createMock(LoggerInterface::class),
                 [],
-                'List trails service',
-            ],
+                'List trails service'
+            ]
         ];
     }
 }
