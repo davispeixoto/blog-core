@@ -26,8 +26,23 @@
   },
   "autoload": {
     "psr-4": {
-      "DavisPeixoto\\BlogCore\\": "src/BlogCore",
+      "DavisPeixoto\\BlogCore\\": "src/BlogCore"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
       "DavisPeixoto\\BlogCore\\Tests\\": "tests"
     }
+  },
+  "scripts": {
+    "lint": "parallel-lint src tests",
+    "phpunit": "phpunit --verbose --colors=always",
+    "phpcs": "phpcs src tests --standard=psr2 -sp --colors",
+    "test": [
+      "@lint",
+      "@phpunit",
+      "@phpcs"
+    ],
+    "build-docs": "apigen generate --source='src' --destination='build/apidocs' --template-theme='bootstrap' --deprecated --todo"
   }
 }
