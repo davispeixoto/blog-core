@@ -39,10 +39,10 @@
   },
   "scripts": {
     "phpstan": "vendor/bin/phpstan analyse src --level=7",
-    "phpunit": "phpunit --verbose --colors=always",
-    "phpcs": "phpcs src tests --standard=psr2 -sp --colors",
-    "phpcs-fixer-src": "php-cs-fixer fix src --rules=@PSR2 --verbose --show-progress=estimating",
-    "phpcs-fixer-tests": "php-cs-fixer fix tests --rules=@PSR2 --verbose --show-progress=estimating",
+    "phpunit": "vendor/bin/phpunit --verbose --colors=always",
+    "phpcs": "vendor/bin/phpcs src tests --standard=psr2 -sp --colors --runtime-set ignore_warnings_on_exit 1",
+    "phpcs-fixer-src": "vendor/bin/php-cs-fixer fix src --rules=@PSR2 --verbose --show-progress=estimating",
+    "phpcs-fixer-tests": "vendor/bin/php-cs-fixer fix tests --rules=@PSR2 --verbose --show-progress=estimating",
     "test": [
       "@phpstan",
       "@phpunit",
