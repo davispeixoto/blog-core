@@ -24,8 +24,13 @@ class TestPost extends TestCase
 
     public function setUp()
     {
-        $this->post = new Post('A Post', 'Lorem ipsum', new Author('Davis', 'email@example.org',
-            'Some string', null, new DateTime()), null, [], null);
+        $this->post = new Post('A Post', 'Lorem ipsum', new Author(
+            'Davis',
+            'email@example.org',
+            'Some string',
+            null,
+            new DateTime()
+        ), null, [], null);
     }
 
     /**
@@ -92,8 +97,13 @@ class TestPost extends TestCase
                 null,
                 'A Post',
                 'Lorem ipsum',
-                new Author('Davis', 'email@example.org', 'Some string',
-                    null, new DateTime()),
+                new Author(
+                    'Davis',
+                    'email@example.org',
+                    'Some string',
+                    null,
+                    new DateTime()
+                ),
                 [],
                 null,
                 Post::class,
@@ -103,8 +113,13 @@ class TestPost extends TestCase
                 Uuid::uuid4()->toString(),
                 'A Post',
                 'Lorem ipsum',
-                new Author('Davis', 'email@example.org', 'Some string',
-                    null, new DateTime()),
+                new Author(
+                    'Davis',
+                    'email@example.org',
+                    'Some string',
+                    null,
+                    new DateTime()
+                ),
                 [new Tag('tag1', null), new Tag('tag2', null)],
                 null,
                 Post::class,
@@ -114,8 +129,13 @@ class TestPost extends TestCase
                 null,
                 'A Post',
                 'Lorem ipsum',
-                new Author('Davis', 'email@example.org', 'Some string',
-                    null, new DateTime()),
+                new Author(
+                    'Davis',
+                    'email@example.org',
+                    'Some string',
+                    null,
+                    new DateTime()
+                ),
                 [],
                 new DateTime(),
                 Post::class,
@@ -125,8 +145,13 @@ class TestPost extends TestCase
                 '',
                 'A Post',
                 'Lorem ipsum',
-                new Author('Davis', 'email@example.org', 'Some string',
-                    null, new DateTime()),
+                new Author(
+                    'Davis',
+                    'email@example.org',
+                    'Some string',
+                    null,
+                    new DateTime()
+                ),
                 [new Tag('tag1', null), new Tag('tag2', null)],
                 new DateTime(),
                 Post::class,

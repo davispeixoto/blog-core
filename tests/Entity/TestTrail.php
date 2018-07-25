@@ -34,10 +34,20 @@ class TestTrail extends TestCase
 
     public function setUp()
     {
-        $this->post1 = new Post('Post 1', 'Lorem ipsum', new Author('Davis', 'email@example.org',
-            'Some string', null, new DateTime()), null, [], null);
-        $this->post2 = new Post('Post 2', 'Lorem ipsum', new Author('John Doe', 'email@example.org',
-            'Some string', Uuid::uuid4()->toString(), new DateTime()), null, [], null);
+        $this->post1 = new Post('Post 1', 'Lorem ipsum', new Author(
+            'Davis',
+            'email@example.org',
+            'Some string',
+            null,
+            new DateTime()
+        ), null, [], null);
+        $this->post2 = new Post('Post 2', 'Lorem ipsum', new Author(
+            'John Doe',
+            'email@example.org',
+            'Some string',
+            Uuid::uuid4()->toString(),
+            new DateTime()
+        ), null, [], null);
         $this->trail = new Trail('A Trail', 'Lorem ipsum sit dolor amet', null, []);
     }
 

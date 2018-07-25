@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c09f309d071b9e60565add675533389",
+    "content-hash": "1c06c1d9ff98b80688db1764be9a5e7e",
     "packages": [
         {
             "name": "myclabs/php-enum",
@@ -686,7 +686,7 @@
             "time": "2014-09-09T13:34:57+00:00"
         },
         {
-            "name": "fabpot/php-cs-fixer",
+            "name": "friendsofphp/php-cs-fixer",
             "version": "v2.12.2",
             "source": {
                 "type": "git",
@@ -774,7 +774,6 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "abandoned": "friendsofphp/php-cs-fixer",
             "time": "2018-07-06T10:37:40+00:00"
         },
         {
