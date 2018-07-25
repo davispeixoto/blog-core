@@ -17,5 +17,7 @@ use DavisPeixoto\BlogCore\Interfaces\RepositoryInterface;
  */
 abstract class AbstractPostRepository implements RepositoryInterface
 {
-    public function getBySlang() {}
+    public function getBySlang()
+    {
+    }
 }

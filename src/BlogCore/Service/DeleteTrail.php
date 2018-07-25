@@ -8,11 +8,9 @@
 
 namespace DavisPeixoto\BlogCore\Service;
 
-
 use DavisPeixoto\BlogCore\Entity\Trail;
 use DavisPeixoto\BlogCore\Repository\AbstractTrailRepository;
 use Psr\Log\LoggerInterface;
-
 
 /**
  * Class DeleteTrail

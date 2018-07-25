@@ -15,5 +15,4 @@ namespace DavisPeixoto\BlogCore\Interfaces;
  */
 interface FactoryInterface
 {
-
 }

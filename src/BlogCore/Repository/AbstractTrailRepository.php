@@ -17,5 +17,4 @@ use DavisPeixoto\BlogCore\Interfaces\RepositoryInterface;
  */
 abstract class AbstractTrailRepository implements RepositoryInterface
 {
-
 }

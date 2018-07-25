@@ -8,7 +8,6 @@
 
 namespace DavisPeixoto\BlogCore\Service;
 
-
 use DavisPeixoto\BlogCore\Repository\AbstractPostRepository;
 use Psr\Log\LoggerInterface;
 

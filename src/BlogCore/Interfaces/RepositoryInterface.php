@@ -8,6 +8,7 @@
 
 namespace DavisPeixoto\BlogCore\Interfaces;
 
+use DavisPeixoto\BlogCore\Entity\AbstractEntity;
 use Exception;
 use stdClass;
 
@@ -23,22 +24,22 @@ interface RepositoryInterface
      * Should return the Uuid of created/updated object
      * Or throws an exception
      *
-     * @param stdClass $obj
+     * @param AbstractEntity $obj
      * @throws Exception
      * @return string
      */
-    public function save(stdClass $obj): string;
+    public function save(AbstractEntity $obj): string;
 
     /**
      * Must receive the entity to be deleted
      * Should return true in case of success
      * Or return false in case of failure
      *
-     * @param stdClass $obj
+     * @param AbstractEntity $obj
      * @throws Exception
      * @return boolean
      */
-    public function delete(stdClass $obj): bool;
+    public function delete(AbstractEntity $obj): bool;
 
     /**
      * Should receive an array of filters

@@ -8,13 +8,12 @@
 
 namespace DavisPeixoto\BlogCore\Entity;
 
-
 use Ramsey\Uuid\Exception\InvalidUuidStringException;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use stdClass;
 
-class AbstractEntity extends stdClass
+abstract class AbstractEntity extends stdClass
 {
     const UUID_TYPE_RANDOM = 4;
 

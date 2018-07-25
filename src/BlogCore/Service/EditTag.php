@@ -8,7 +8,6 @@
 
 namespace DavisPeixoto\BlogCore\Service;
 
-
 use DavisPeixoto\BlogCore\Entity\Tag;
 use DavisPeixoto\BlogCore\Repository\AbstractTagRepository;
 use Psr\Log\LoggerInterface;

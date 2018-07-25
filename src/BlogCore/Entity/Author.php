@@ -8,7 +8,6 @@
 
 namespace DavisPeixoto\BlogCore\Entity;
 
-
 use DateTime;
 use Ramsey\Uuid\Exception\InvalidUuidStringException;
 

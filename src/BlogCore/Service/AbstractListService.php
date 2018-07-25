@@ -8,7 +8,6 @@
 
 namespace DavisPeixoto\BlogCore\Service;
 
-
 use DavisPeixoto\BlogCore\Interfaces\RepositoryInterface;
 use DavisPeixoto\BlogCore\Interfaces\ServiceInterface;
 use Exception;
